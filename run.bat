@@ -1,0 +1,13 @@
+@echo off
+echo Starting RFID Linen Pro Backend...
+cd /d "%~dp0backend"
+if not exist "venv" (
+    echo Creating virtual environment...
+    python -m venv venv
+)
+call venv\Scripts\activate.bat
+echo Installing/updating dependencies...
+pip install -r requirements.txt
+echo Starting FastAPI Uvicorn Server...
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+pause

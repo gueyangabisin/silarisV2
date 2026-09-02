@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pendaftaran Linen - RFID Linen Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#cfe4ff",
+                        "inverse-on-surface": "#f1f0f5",
+                        "tertiary": "#6a3400",
+                        "surface-container": "#eeedf3",
+                        "status-error": "#E02020",
+                        "secondary-container": "#9ef6b5",
+                        "tertiary-fixed": "#ffdcc5",
+                        "primary-container": "#0077BF",
+                        "on-background": "#1a1b1f",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#0b6d3a",
+                        "surface-variant": "#e3e2e7",
+                        "on-secondary-container": "#177340",
+                        "surface": "#faf9fe",
+                        "tertiary-container": "#8c4802",
+                        "surface-bright": "#faf9fe",
+                        "tertiary-fixed-dim": "#ffb781",
+                        "glass-border": "rgba(255, 255, 255, 0.3)",
+                        "text-secondary": "#4A4A4A",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001d34",
+                        "text-muted": "#6E6E73",
+                        "primary": "#004673",
+                        "outline-variant": "#c1c7d1",
+                        "inverse-surface": "#2f3034",
+                        "surface-dim": "#dad9df",
+                        "text-primary": "#0A0A0A",
+                        "secondary-fixed-dim": "#83d99b",
+                        "surface-tint": "#0c629c",
+                        "on-secondary-fixed-variant": "#005229",
+                        "background": "#faf9fe",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f4f3f8",
+                        "glass-bg": "rgba(255, 255, 255, 0.25)",
+                        "surface-container-highest": "#e3e2e7",
+                        "on-tertiary-container": "#ffc69e",
+                        "on-secondary-fixed": "#00210d",
+                        "inverse-primary": "#9acbff",
+                        "surface-container-high": "#e9e7ed",
+                        "on-primary-container": "#b1d6ff",
+                        "status-idle": "#8E8E93",
+                        "primary-fixed-dim": "#9acbff",
+                        "on-surface": "#1a1b1f",
+                        "outline": "#717881",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#004a79",
+                        "on-tertiary-fixed-variant": "#703800",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#414750",
+                        "secondary-fixed": "#9ef6b5",
+                        "status-warning": "#F7B500",
+                        "status-success": "#2DCA73",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#301400"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "32px",
+                        "stack-sm": "8px",
+                        "padding-card": "24px",
+                        "header-height": "64px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "headline-md": ["Poppins"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-lg": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "400" }],
+                        "data-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg": ["22px", { "lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "headline-md": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-sm": ["11px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Scrollbar for Glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 70, 115, 0.3); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 70, 115, 0.5); 
+        }
+    </style>
+</head>
+<body class="text-text-primary min-h-screen overflow-x-hidden font-body-md bg-background">
+<!-- Fixed Background -->
+<div class="fixed inset-0 w-full h-full bg-cover bg-center z-[-2] filter blur-[4px] opacity-60" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_CBmdcZxhjWE8HfNBx_ti96Lpy0YN6PAul7oig9c9Lw3DkR4XoQDU23w0Gn6JwHyONawjzskzrFu8aJdzvQxIFfHZL_7D_v9vBs7Uzzvuyz7zV-jGDdhuPNRXLbY6F4WCbTJncyn27Oi11LlUveXMG0LIR6B5wg7pJf7OpeJ5CshTY5WJnxQUn2Bi4SxMc4YJdMpeCvk_Rn2rIYPndtpGPUGVy30WIJp3dS8FT7cGllxZpxVyaM1c07_AQDp06B0PfA');"></div>
+<!-- Ambient Glows -->
+<div class="fixed top-0 left-0 w-[500px] h-[500px] bg-white opacity-20 rounded-full mix-blend-screen filter blur-[100px] z-[-1] pointer-events-none"></div>
+<div class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-primary-fixed opacity-10 rounded-full mix-blend-screen filter blur-[120px] z-[-1] pointer-events-none"></div>
+<!-- Top Navigation (Pill Bar) -->
+<header class="bg-glass-bg backdrop-blur-[24px] border border-glass-border shadow-md rounded-full mt-4 mx-auto w-[calc(100%-64px)] max-w-7xl h-[64px] sticky top-4 flex justify-between items-center px-6 z-50">
+<!-- Logo & Brand -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-glass-border">
+<img alt="RFID Linen Pro Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApMs4M38CMh8qrdtTs7yCauKjODB3eTBl59o6hLxdFMTQfSQnAgt13MRQ73T5HClvZTL0NpKpEKBNdGpNTteVdJcQeQLBvu3Sk5fepHg45DVbs8od16LnQvg4o9mJgLMf2QNzVaOd6TPy7tLLSXv8YiScR_UkY2F-_H_fGA98SCDdjHFPNwl7UD6ziFCFGpPLBhfY4Rab76kMQx6iEWXz1_N6gQmnoLZqaNvL4XIaUWQJx6lOJWmYFjKaY4A2umFsvsA"/>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary">RFID Linen Pro</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-2">
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10 duration-300" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10 duration-300" href="#">Inventory</a>
+<a class="bg-primary text-on-primary rounded-full px-4 py-1.5 flex items-center gap-1 font-label-md text-label-md shadow-sm" href="#">
+<span>Pendaftaran Linen</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10 duration-300" href="#">Transactions</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10 duration-300" href="#">Settings</a>
+</nav>
+<!-- Status Badges & Actions -->
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-glass-bg border border-glass-border">
+<div class="w-2 h-2 rounded-full bg-status-success shadow-[0_0_8px_rgba(45,202,115,0.6)]"></div>
+<span class="font-label-sm text-label-sm text-text-secondary">Reader ON</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-glass-bg border border-glass-border">
+<div class="w-2 h-2 rounded-full bg-status-success shadow-[0_0_8px_rgba(45,202,115,0.6)]"></div>
+<span class="font-label-sm text-label-sm text-text-secondary">Cloud DB ON</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors text-primary border border-glass-border">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[88px] pb-8 px-margin-page max-w-7xl mx-auto flex flex-col md:flex-row gap-gutter">
+<!-- Left Panel: Control / Summary (30%) -->
+<section class="w-full md:w-[30%] flex flex-col gap-gutter">
+<div class="bg-glass-bg backdrop-blur-[24px] border border-glass-border rounded-xl shadow-sm p-padding-card relative overflow-hidden">
+<!-- Panel Header -->
+<div class="flex items-center gap-2 mb-stack-lg border-b border-glass-border pb-3">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg" data-weight="fill">settings_input_antenna</span>
+<h2 class="font-headline-md text-headline-md text-primary">Persiapan Scan</h2>
+</div>
+<form class="flex flex-col gap-stack-md">
+<!-- Port Sensor -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-text-secondary ml-1">Port Sensor</label>
+<div class="flex gap-2">
+<select class="flex-1 bg-transparent border border-glass-border rounded-full px-4 py-2 text-text-primary focus:border-primary focus:ring-0 transition-colors font-body-md text-body-md appearance-none">
+<option value="COM3">COM3 - Reader Utama</option>
+<option value="COM4">COM4 - Reader Cadangan</option>
+</select>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-glass-border hover:bg-white/20 transition-colors text-primary" title="Refresh Port" type="button">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+</div>
+</div>
+<!-- Kategori Linen -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-text-secondary ml-1">Kategori Linen</label>
+<select class="w-full bg-transparent border border-glass-border rounded-full px-4 py-2 text-text-primary focus:border-primary focus:ring-0 transition-colors font-body-md text-body-md appearance-none">
+<option value="">Pilih Kategori...</option>
+<option value="sprei">Sprei</option>
+<option value="selimut">Selimut</option>
+<option value="handuk">Handuk</option>
+</select>
+</div>
+<!-- Nama Linen -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-text-secondary ml-1">Nama Linen</label>
+<select class="w-full bg-transparent border border-glass-border rounded-full px-4 py-2 text-text-primary focus:border-primary focus:ring-0 transition-colors font-body-md text-body-md appearance-none" disabled="">
+<option value="">Pilih Kategori Terlebih Dahulu...</option>
+</select>
+</div>
+<!-- Scan Action -->
+<div class="mt-stack-sm pt-stack-sm border-t border-glass-border">
+<button class="w-full py-3 rounded-full border border-primary text-primary font-label-lg text-label-lg flex justify-center items-center gap-2 hover:bg-primary hover:text-on-primary transition-all duration-300 shadow-sm group" type="button">
+<span class="material-symbols-outlined group-hover:animate-pulse">barcode_scanner</span>
+                            Mulai Scanning
+                        </button>
+</div>
+</form>
+<!-- Statistics -->
+<div class="mt-stack-lg flex flex-col gap-2">
+<div class="flex justify-between items-center py-2 border-b border-glass-border/50">
+<span class="font-body-sm text-body-sm text-text-secondary">Total Scan Sesi Ini</span>
+<span class="font-data-mono text-data-mono text-text-primary">0</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-glass-border/50">
+<span class="font-body-sm text-body-sm text-text-secondary">Berhasil</span>
+<span class="font-data-mono text-data-mono text-status-success">0</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="font-body-sm text-body-sm text-text-secondary">Duplikat</span>
+<span class="font-data-mono text-data-mono text-status-error">0</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Data / List (70%) -->
+<section class="w-full md:w-[70%] flex flex-col h-[calc(100vh-120px)]">
+<div class="bg-glass-bg backdrop-blur-[24px] border border-glass-border rounded-xl shadow-sm p-padding-card flex flex-col h-full relative overflow-hidden">
+<!-- Corner Glow Detail -->
+<div class="absolute top-0 right-0 w-[300px] h-[300px] bg-white opacity-5 rounded-full mix-blend-screen filter blur-[60px] pointer-events-none"></div>
+<!-- Panel Header -->
+<div class="flex justify-between items-center mb-stack-md border-b border-glass-border pb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg" data-weight="fill">view_list</span>
+<h2 class="font-headline-md text-headline-md text-primary">Live Scanning</h2>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-glass-bg border border-glass-border ml-2">
+<div class="w-2 h-2 rounded-full bg-status-idle"></div>
+<span class="font-label-sm text-label-sm text-text-secondary">Idle</span>
+</div>
+</div>
+<button class="px-4 py-1.5 rounded-full border border-outline text-text-secondary font-label-md text-label-md hover:bg-surface-variant transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+                        Reset Tabel
+                    </button>
+</div>
+<!-- Main Content Area (Empty State or Table) -->
+<div class="flex-1 relative border border-glass-border rounded-lg bg-white/5 overflow-hidden flex flex-col">
+<!-- Empty State (Visible initially) -->
+<div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center z-10">
+<span class="material-symbols-outlined text-[64px] text-text-muted mb-4 opacity-50" data-weight="fill">cell_tower</span>
+<h3 class="font-headline-md text-headline-md text-text-primary mb-2">Pilih kategori dan nama linen, lalu tekan 'Mulai Scanning'</h3>
+<p class="font-body-md text-body-md text-text-secondary max-w-md">Data EPC akan muncul di sini secara real-time dari reader RFID.</p>
+</div>
+<!-- Table Structure (Hidden behind empty state visually, but ready) -->
+<div class="overflow-auto w-full h-full opacity-20 pointer-events-none">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-glass-bg backdrop-blur-md border-b border-glass-border z-20">
+<tr>
+<th class="p-3 font-label-sm text-label-sm text-text-secondary font-semibold">No</th>
+<th class="p-3 font-label-sm text-label-sm text-text-secondary font-semibold">ID EPC</th>
+<th class="p-3 font-label-sm text-label-sm text-text-secondary font-semibold">Kategori</th>
+<th class="p-3 font-label-sm text-label-sm text-text-secondary font-semibold">Nama Linen</th>
+<th class="p-3 font-label-sm text-label-sm text-text-secondary font-semibold">Waktu Scan</th>
+<th class="p-3 font-label-sm text-label-sm text-text-secondary font-semibold">Status Pendaftaran</th>
+<th class="p-3 font-label-sm text-label-sm text-text-secondary font-semibold">Aksi</th>
+</tr>
+</thead>
+<tbody>
+<!-- Example Row Pattern (Hidden/Empty initially) -->
+<tr class="border-b border-glass-border hover:bg-white/5 transition-colors">
+<td class="p-3 font-body-sm text-body-sm text-text-secondary">1</td>
+<td class="p-3 font-data-mono text-data-mono text-primary">E280 110C 2000 0000 0000 0001</td>
+<td class="p-3 font-body-sm text-body-sm">Sprei</td>
+<td class="p-3 font-body-sm text-body-sm">Sprei Single Putih</td>
+<td class="p-3 font-data-mono text-data-mono text-text-secondary">10:45:01</td>
+<td class="p-3">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-glass-bg border border-glass-border">
+<div class="w-1.5 h-1.5 rounded-full bg-status-idle"></div>
+<span class="font-label-sm text-label-sm text-text-secondary">Menunggu</span>
+</div>
+</td>
+<td class="p-3">
+<button class="text-text-muted hover:text-status-error transition-colors"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="mt-stack-md pt-stack-sm border-t border-glass-border flex justify-end">
+<button class="px-8 py-2.5 rounded-full bg-surface-dim text-text-muted font-label-lg text-label-lg cursor-not-allowed border border-outline-variant flex items-center gap-2" disabled="">
+<span class="material-symbols-outlined">save</span>
+                        Simpan Data Linen
+                    </button>
+</div>
+</div>
+</section>
+</main>
+</body></html>

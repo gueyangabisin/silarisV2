@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RFID Linen Pro - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#9acbff",
+                      "text-secondary": "#4A4A4A",
+                      "primary-container": "#0077BF",
+                      "secondary": "#0b6d3a",
+                      "surface-bright": "#faf9fe",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#177340",
+                      "on-tertiary-fixed": "#301400",
+                      "outline": "#717881",
+                      "inverse-surface": "#2f3034",
+                      "primary": "#004673",
+                      "on-tertiary-container": "#ffc69e",
+                      "on-primary": "#ffffff",
+                      "status-error": "#E02020",
+                      "tertiary-fixed-dim": "#ffb781",
+                      "on-surface-variant": "#414750",
+                      "on-background": "#1a1b1f",
+                      "on-primary-container": "#b1d6ff",
+                      "outline-variant": "#c1c7d1",
+                      "text-muted": "#6E6E73",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed-dim": "#83d99b",
+                      "glass-bg": "rgba(255, 255, 255, 0.25)",
+                      "tertiary-container": "#8c4802",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#cfe4ff",
+                      "on-surface": "#1a1b1f",
+                      "secondary-container": "#9ef6b5",
+                      "surface-container-high": "#e9e7ed",
+                      "glass-border": "rgba(255, 255, 255, 0.3)",
+                      "surface-container-highest": "#e3e2e7",
+                      "inverse-on-surface": "#f1f0f5",
+                      "status-idle": "#8E8E93",
+                      "status-success": "#2DCA73",
+                      "on-secondary-fixed": "#00210d",
+                      "background": "#faf9fe",
+                      "surface": "#faf9fe",
+                      "surface-tint": "#0c629c",
+                      "on-secondary-fixed-variant": "#005229",
+                      "on-secondary": "#ffffff",
+                      "text-primary": "#0A0A0A",
+                      "surface-dim": "#dad9df",
+                      "inverse-primary": "#9acbff",
+                      "surface-variant": "#e3e2e7",
+                      "on-primary-fixed": "#001d34",
+                      "on-error": "#ffffff",
+                      "tertiary": "#6a3400",
+                      "surface-container-low": "#f4f3f8",
+                      "surface-container": "#eeedf3",
+                      "tertiary-fixed": "#ffdcc5",
+                      "error": "#ba1a1a",
+                      "status-warning": "#F7B500",
+                      "on-primary-fixed-variant": "#004a79",
+                      "secondary-fixed": "#9ef6b5",
+                      "on-tertiary-fixed-variant": "#703800"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "header-height": "64px",
+                      "stack-lg": "24px",
+                      "margin-page": "32px",
+                      "gutter": "16px",
+                      "stack-md": "16px",
+                      "padding-card": "24px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "label-lg": [
+                              "Poppins"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Poppins"
+                      ],
+                      "data-mono": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Poppins"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "22px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "18px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- Fixed Background Image -->
+<div class="fixed inset-0 z-[-1] bg-cover bg-center" data-alt="A highly detailed industrial warehouse interior with glowing neon orange accents, automated machinery processing white linen, sleek modern aesthetic, cool blue tones, and bright volumetric lighting from large windows." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBxVxpUIDZLWfJHCXhDShJhHAOE7MPa07HGq_C3t77o4LEo_lzVbnXHNoDrlZyNDBLGdV9aDv-PK3yck2T2K5TDFrTgbQzntSjjeuuf90kQE_HTmxnObY6l6c0Wk3e6NpKTK7bf-RRIN85DEpplSWOEqqRAusY7odMbTQ2i-iBALVJ264SUQ1WyfRWXS95xfzzrBfSQclA-Bgk45YXSqkG9UjjTymJ2bpUePHukxa3xOsXdGxFdCNaNvUnkVC_7TuKmw')"></div>
+<div class="fixed inset-0 z-[-1] bg-black/20"></div> <!-- Subtle overlay for readability -->
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center max-w-7xl mx-auto px-6 h-[64px] bg-glass-bg backdrop-blur-[24px] rounded-full mt-4 border border-glass-border shadow-[0_4px_12px_rgba(0,0,0,0.1)] text-primary">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_laundry_service</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold">RFID Linen Pro</span>
+</div>
+<div class="hidden md:flex gap-1 font-label-lg text-label-lg font-Poppins">
+<a class="bg-primary text-on-primary rounded-full px-4 py-1 flex items-center gap-1" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1 hover:bg-glass-border hover:backdrop-blur-md rounded-full transition-all" href="#">Pendaftaran Linen</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1 hover:bg-glass-border hover:backdrop-blur-md rounded-full transition-all" href="#">Cek Info Linen</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1 hover:bg-glass-border hover:backdrop-blur-md rounded-full transition-all" href="#">Pengiriman</a>
+<div class="relative group">
+<a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1 flex items-center gap-1 hover:bg-glass-border hover:backdrop-blur-md rounded-full transition-all" href="#">Manajemen Data <span class="material-symbols-outlined text-[16px]">expand_more</span></a>
+</div>
+<div class="relative group">
+<a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1 flex items-center gap-1 hover:bg-glass-border hover:backdrop-blur-md rounded-full transition-all" href="#">Admin Cloud <span class="material-symbols-outlined text-[16px]">expand_more</span></a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+<div class="w-2 h-2 rounded-full bg-status-error"></div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Reader OFF</span>
+</div>
+<div class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Cloud DB ON</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-[104px] pb-margin-page px-margin-page max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-stack-lg">
+<h1 class="font-headline-lg text-headline-lg text-white font-Poppins font-bold">Selamat Datang, Operator Gudang</h1>
+<p class="font-body-md text-body-md text-white/80 mt-1">Ringkasan kondisi gudang dan inventaris hari ini.</p>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1: Total Linen -->
+<div class="glass-panel rounded-2xl p-padding-card flex flex-col justify-between min-h-[140px]">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Total Linen Terdaftar</span>
+</div>
+<div class="mt-4">
+<span class="font-data-mono text-[36px] font-bold text-on-surface leading-none block">320</span>
+</div>
+</div>
+<!-- Card 2: Tersedia -->
+<div class="glass-panel rounded-2xl p-padding-card flex flex-col justify-between min-h-[140px]">
+<div class="flex items-center gap-2 text-status-success">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Tersedia</span>
+</div>
+<div class="mt-4">
+<span class="font-data-mono text-[36px] font-bold text-status-success leading-none block">248</span>
+</div>
+</div>
+<!-- Card 3: Dikirim -->
+<div class="glass-panel rounded-2xl p-padding-card flex flex-col justify-between min-h-[140px]">
+<div class="flex items-center gap-2 text-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Dikirim</span>
+</div>
+<div class="mt-4">
+<span class="font-data-mono text-[36px] font-bold text-primary-container leading-none block">72</span>
+</div>
+</div>
+<!-- Card 4: Bermasalah -->
+<div class="glass-panel rounded-2xl p-padding-card flex flex-col justify-between min-h-[140px] relative cursor-pointer hover:border-status-error/50 transition-colors group">
+<div class="absolute -top-2 -right-2 w-6 h-6 bg-status-error text-white rounded-full flex items-center justify-center font-label-sm text-label-sm font-bold shadow-lg shadow-status-error/30 group-hover:scale-110 transition-transform">
+                    3
+                </div>
+<div class="flex items-center gap-2 text-status-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-md text-label-md text-status-error font-semibold">Perlu Tindakan</span>
+</div>
+<div class="mt-4">
+<span class="font-data-mono text-[36px] font-bold text-status-error leading-none block">3</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>

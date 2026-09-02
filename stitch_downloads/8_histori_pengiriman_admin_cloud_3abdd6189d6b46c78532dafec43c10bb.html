@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Cloud — Histori Pengiriman</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "glass-border": "rgba(255, 255, 255, 0.3)",
+                        "on-primary-fixed": "#001d34",
+                        "tertiary-fixed-dim": "#ffb781",
+                        "on-secondary-container": "#177340",
+                        "status-success": "#2DCA73",
+                        "primary": "#004673",
+                        "secondary": "#0b6d3a",
+                        "inverse-primary": "#9acbff",
+                        "outline": "#717881",
+                        "on-primary-container": "#b1d6ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#00210d",
+                        "primary-container": "#005e98",
+                        "on-surface-variant": "#414750",
+                        "outline-variant": "#c1c7d1",
+                        "on-secondary": "#ffffff",
+                        "glass-bg": "rgba(255, 255, 255, 0.25)",
+                        "surface-container-low": "#f4f3f8",
+                        "tertiary-container": "#8c4802",
+                        "surface-dim": "#dad9df",
+                        "inverse-on-surface": "#f1f0f5",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffdcc5",
+                        "status-idle": "#8E8E93",
+                        "background": "#faf9fe",
+                        "surface-container-high": "#e9e7ed",
+                        "surface": "#faf9fe",
+                        "surface-bright": "#faf9fe",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1a1b1f",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#703800",
+                        "on-tertiary-fixed": "#301400",
+                        "surface-variant": "#e3e2e7",
+                        "status-error": "#E02020",
+                        "primary-fixed": "#cfe4ff",
+                        "tertiary": "#6a3400",
+                        "secondary-fixed": "#9ef6b5",
+                        "status-warning": "#F7B500",
+                        "primary-fixed-dim": "#9acbff",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e3e2e7",
+                        "on-tertiary-container": "#ffc69e",
+                        "surface-container": "#eeedf3",
+                        "on-secondary-fixed-variant": "#005229",
+                        "text-muted": "#6E6E73",
+                        "on-primary-fixed-variant": "#004a79",
+                        "secondary-fixed-dim": "#83d99b",
+                        "text-primary": "#0A0A0A",
+                        "surface-tint": "#0c629c",
+                        "inverse-surface": "#2f3034",
+                        "text-secondary": "#4A4A4A",
+                        "on-background": "#1a1b1f",
+                        "secondary-container": "#9ef6b5",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem"
+                    },
+                    "spacing": {
+                        "margin-page": "32px",
+                        "padding-card": "24px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "header-height": "64px",
+                        "gutter": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Poppins"],
+                        "headline-lg": ["Poppins"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "label-lg": ["Poppins"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "headline-lg": ["22px", { "lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "body-sm": ["11px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "data-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "700" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .modal-glass {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Ambient Glow Blob */
+        .ambient-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .table-row-glass {
+            transition: background-color 0.2s ease;
+        }
+        .table-row-glass:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen text-on-surface overflow-x-hidden relative font-sans">
+<!-- Fixed Background Image -->
+<div class="fixed inset-0 z-[-1]">
+<div class="w-full h-full bg-cover bg-center" data-alt="A fixed, full-cover background image showing a highly detailed, modern industrial warehouse environment. The scene is brightly lit with high-key lighting, featuring rows of high-tech logistics equipment, conveyor belts, and soft blue and white hues that evoke a sense of precision, cleanliness, and real-time efficiency. The style is hyper-realistic and high-tech." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD00Y3DN1xOXnj-9aiEMZ6JeIxJDIDf8F3sFrtkRr9OKr4lTm8tm9I2TgzVwTy3oC32MGaQ375qRHuXl1jbxqqDXpwKms4ZL9iCPVYP60xeMhKyfvzYnPoRvsOaapH8JZ9rmRv4UJK1SmknL1R2jRkcgJIXOWMm8tFClKD6O8gzSYjIBAI8QfEFM1FMYeh-9R9XRLL6OzZ0Xb1LF0GIndYIkDJZPDOAsIt6EBjZi4QwoHep9yvPjaPirzIftAK-RfPr-A')"></div>
+<!-- Ambient Glows -->
+<div class="ambient-glow top-20 left-10"></div>
+<div class="ambient-glow bottom-20 right-10"></div>
+</div>
+<!-- Top Navigation (Pill Bar) -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 h-[64px] bg-glass-bg backdrop-blur-[24px] rounded-full mt-4 mx-auto max-w-7xl border border-glass-border shadow-md text-on-primary-fixed">
+<!-- Logo & Branding -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white/50 bg-white/20 flex-shrink-0">
+<img alt="RFID Linen Pro Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALEKLqCFmjmCO6b6xwrFYDCr8Nlgo2Yy-WzScmaD1n1R3uSl6YW2pTsr_CTSKIDKDlTzS5VWXNSOY0YHsuekl094IojDmXqKhbZKNx0seItHm-0A2X_9hoq83Z73XtFSIn4JNgENose6JbsREuRLAfVtbEMjUnvK7m12tLYghUlPhedh357bB8lRUh048n-Qxh_jyi8Bx2xusyemb4sGj4rsVJB30F7oroWNGWQx0HAatm6h9vDKatFJBYGsWV4Ckg_g"/>
+</div>
+<span class="font-headline-lg text-headline-lg font-bold text-primary">RFID Linen Pro</span>
+</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-2">
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-lg text-label-lg hover:bg-glass-border hover:rounded-full" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-lg text-label-lg hover:bg-glass-border hover:rounded-full" href="#">Pendaftaran</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-lg text-label-lg hover:bg-glass-border hover:rounded-full" href="#">Cek Info</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-lg text-label-lg hover:bg-glass-border hover:rounded-full" href="#">Pengiriman</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-lg text-label-lg hover:bg-glass-border hover:rounded-full" href="#">Manajemen</a>
+<div class="relative group">
+<a class="bg-primary text-on-primary rounded-full px-4 py-1.5 flex items-center gap-1 font-label-lg text-label-lg scale-95 transition-transform duration-200" href="#">
+                    Admin Cloud
+                    <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</a>
+<!-- Dropdown mock -->
+<div class="absolute top-full mt-2 right-0 hidden group-hover:block bg-glass-bg backdrop-blur-[24px] border border-glass-border rounded-xl shadow-lg p-2 min-w-[200px]">
+<a class="block px-4 py-2 text-sm text-on-surface-variant hover:bg-white/30 rounded-lg" href="#">Data Master</a>
+<a class="block px-4 py-2 text-sm font-semibold text-primary bg-white/40 rounded-lg" href="#">Histori Pengiriman</a>
+</div>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-3">
+<!-- Badges -->
+<div class="flex items-center bg-white/20 rounded-full px-3 py-1 border border-glass-border">
+<span class="w-2 h-2 rounded-full bg-status-success mr-2"></span>
+<span class="font-label-sm text-label-sm">RFID</span>
+</div>
+<div class="flex items-center bg-white/20 rounded-full px-3 py-1 border border-glass-border">
+<span class="w-2 h-2 rounded-full bg-status-success mr-2"></span>
+<span class="font-label-sm text-label-sm">Cloud</span>
+</div>
+<!-- Icons -->
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-glass-border transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">sensors</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-glass-border transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">cloud_done</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-glass-border transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-[88px] px-margin-page pb-margin-page max-w-7xl mx-auto relative z-10">
+<!-- Main Glass Panel -->
+<div class="glass-panel rounded-2xl shadow-lg overflow-hidden flex flex-col">
+<!-- Panel Header -->
+<div class="p-padding-card border-b border-glass-border flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">Histori Pengiriman</h1>
+<p class="font-body-md text-body-md text-text-secondary mt-1">Riwayat seluruh transaksi pengiriman yang sudah tercatat di Cloud.</p>
+</div>
+</div>
+<!-- Filters Area -->
+<div class="px-padding-card py-stack-md bg-white/10 border-b border-glass-border flex flex-wrap items-end gap-gutter">
+<div class="flex-1 min-w-[200px]">
+<label class="block font-label-md text-label-md text-text-secondary mb-1 ml-3">Tanggal Mulai</label>
+<div class="relative">
+<input class="w-full bg-transparent border border-glass-border rounded-full px-4 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors focus:ring-1 focus:ring-primary h-[40px]" type="date" value="2026-08-01"/>
+</div>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block font-label-md text-label-md text-text-secondary mb-1 ml-3">Tanggal Akhir</label>
+<div class="relative">
+<input class="w-full bg-transparent border border-glass-border rounded-full px-4 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors focus:ring-1 focus:ring-primary h-[40px]" type="date" value="2026-08-31"/>
+</div>
+</div>
+<button class="h-[40px] px-6 rounded-full border border-glass-border bg-white/20 hover:bg-white/30 text-primary font-label-md text-label-md transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    Terapkan Filter
+                </button>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white/20 border-b border-glass-border">
+<th class="py-3 px-6 font-label-md text-label-md text-text-secondary font-semibold">Kode Verifikasi</th>
+<th class="py-3 px-6 font-label-md text-label-md text-text-secondary font-semibold">RS Tujuan</th>
+<th class="py-3 px-6 font-label-md text-label-md text-text-secondary font-semibold">Tanggal</th>
+<th class="py-3 px-6 font-label-md text-label-md text-text-secondary font-semibold text-center">Jumlah Linen</th>
+<th class="py-3 px-6 font-label-md text-label-md text-text-secondary font-semibold">Status</th>
+<th class="py-3 px-6 font-label-md text-label-md text-text-secondary font-semibold text-center">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-glass-border font-body-md text-body-md">
+<!-- Row 1 -->
+<tr class="table-row-glass">
+<td class="py-3 px-6 font-data-mono text-data-mono text-[#00BCD4] font-bold">VRF-8X92KQ</td>
+<td class="py-3 px-6 text-on-surface font-medium">RS Sentra Medika</td>
+<td class="py-3 px-6 text-text-secondary">12 Agu 2026, 09:15</td>
+<td class="py-3 px-6 text-center font-medium">24 item</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-glass-border bg-transparent text-on-surface">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-label-sm text-label-sm">Terkirim</span>
+</span>
+</td>
+<td class="py-3 px-6 text-center">
+<button class="p-1.5 rounded-full hover:bg-white/30 text-primary transition-colors inline-flex items-center justify-center" title="Lihat Detail">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="table-row-glass">
+<td class="py-3 px-6 font-data-mono text-data-mono text-[#00BCD4] font-bold">VRF-3F71LM</td>
+<td class="py-3 px-6 text-on-surface font-medium">RS Harapan Bunda</td>
+<td class="py-3 px-6 text-text-secondary">11 Agu 2026, 14:32</td>
+<td class="py-3 px-6 text-center font-medium">18 item</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-glass-border bg-transparent text-on-surface">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-label-sm text-label-sm">Terkirim</span>
+</span>
+</td>
+<td class="py-3 px-6 text-center">
+<button class="p-1.5 rounded-full hover:bg-white/30 text-primary transition-colors inline-flex items-center justify-center" title="Lihat Detail">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="table-row-glass">
+<td class="py-3 px-6 font-data-mono text-data-mono text-[#00BCD4] font-bold">VRF-9K20QZ</td>
+<td class="py-3 px-6 text-on-surface font-medium">RS. Aminah</td>
+<td class="py-3 px-6 text-text-secondary">10 Agu 2026, 08:50</td>
+<td class="py-3 px-6 text-center font-medium">32 item</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-glass-border bg-transparent text-on-surface">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-label-sm text-label-sm">Terkirim</span>
+</span>
+</td>
+<td class="py-3 px-6 text-center">
+<button class="p-1.5 rounded-full hover:bg-white/30 text-primary transition-colors inline-flex items-center justify-center" title="Lihat Detail">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="table-row-glass">
+<td class="py-3 px-6 font-data-mono text-data-mono text-[#00BCD4] font-bold">VRF-5H88NP</td>
+<td class="py-3 px-6 text-on-surface font-medium">Rs Sehat Sentosa</td>
+<td class="py-3 px-6 text-text-secondary">08 Agu 2026, 16:05</td>
+<td class="py-3 px-6 text-center font-medium">12 item</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-glass-border bg-transparent text-on-surface">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-label-sm text-label-sm">Terkirim</span>
+</span>
+</td>
+<td class="py-3 px-6 text-center">
+<button class="p-1.5 rounded-full hover:bg-white/30 text-primary transition-colors inline-flex items-center justify-center" title="Lihat Detail">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-padding-card py-4 border-t border-glass-border bg-white/5 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-text-secondary">Menampilkan 1-4 dari 47 data</span>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded-full border border-glass-border bg-white/10 hover:bg-white/20 flex items-center justify-center text-text-secondary transition-colors" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">1</button>
+<button class="w-8 h-8 rounded-full border border-glass-border bg-transparent hover:bg-white/10 flex items-center justify-center font-label-sm text-label-sm text-text-secondary transition-colors">2</button>
+<button class="w-8 h-8 rounded-full border border-glass-border bg-transparent hover:bg-white/10 flex items-center justify-center font-label-sm text-label-sm text-text-secondary transition-colors">3</button>
+<span class="text-text-secondary font-label-sm text-label-sm">...</span>
+<button class="w-8 h-8 rounded-full border border-glass-border bg-white/10 hover:bg-white/20 flex items-center justify-center text-text-secondary transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Empty State Mockup (Commented out visually, but present in structure for reference) -->
+<div class="hidden mt-stack-lg glass-panel rounded-2xl p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
+<div class="w-16 h-16 rounded-full bg-surface-variant/30 flex items-center justify-center mb-4 text-text-muted">
+<span class="material-symbols-outlined text-[32px]">receipt_long</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Tidak ada riwayat pengiriman...</h3>
+<p class="font-body-md text-body-md text-text-secondary max-w-md">Coba ubah filter tanggal.</p>
+</div>
+</main>
+<!-- Detail Modal Mockup (Hidden by default, shown here for structure) -->
+<div class="hidden fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+<div class="modal-glass w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
+<!-- Modal Header -->
+<div class="p-6 border-b border-glass-border flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[24px]">description</span>
+                        Detail Transaksi
+                    </h2>
+<div class="mt-1 font-data-mono text-data-mono text-[#00BCD4] font-bold">VRF-8X92KQ</div>
+</div>
+<button class="p-2 rounded-full hover:bg-black/5 text-text-secondary transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Content -->
+<div class="p-6 overflow-y-auto flex-1">
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-white/30 rounded-xl p-4 border border-glass-border">
+<span class="block font-label-sm text-label-sm text-text-secondary mb-1">Rumah Sakit Tujuan</span>
+<span class="block font-body-md text-body-md font-semibold text-on-surface">RS Sentra Medika</span>
+</div>
+<div class="bg-white/30 rounded-xl p-4 border border-glass-border">
+<span class="block font-label-sm text-label-sm text-text-secondary mb-1">Waktu Pengiriman</span>
+<span class="block font-body-md text-body-md font-semibold text-on-surface">12 Agu 2026, 09:15</span>
+</div>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface mb-3 flex items-center justify-between">
+                    Daftar Linen (24 Item)
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-glass-border bg-transparent text-on-surface">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-label-sm text-label-sm">Selesai Scan</span>
+</span>
+</h3>
+<div class="border border-glass-border rounded-xl overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-white/40">
+<tr>
+<th class="py-2 px-4 font-label-sm text-label-sm text-text-secondary">No.</th>
+<th class="py-2 px-4 font-label-sm text-label-sm text-text-secondary">EPC Code</th>
+<th class="py-2 px-4 font-label-sm text-label-sm text-text-secondary">Nama Linen</th>
+<th class="py-2 px-4 font-label-sm text-label-sm text-text-secondary">Kategori</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-glass-border bg-white/20 font-body-sm text-body-sm">
+<tr>
+<td class="py-2 px-4 text-center">1</td>
+<td class="py-2 px-4 font-data-mono">EPC-3001-A</td>
+<td class="py-2 px-4">Sprei Operasi Hijau</td>
+<td class="py-2 px-4">OK</td>
+</tr>
+<tr>
+<td class="py-2 px-4 text-center">2</td>
+<td class="py-2 px-4 font-data-mono">EPC-3002-B</td>
+<td class="py-2 px-4">Selimut Pasien Dewasa</td>
+<td class="py-2 px-4">Rawat Inap</td>
+</tr>
+<tr>
+<td class="py-2 px-4 text-center">3</td>
+<td class="py-2 px-4 font-data-mono">EPC-3003-C</td>
+<td class="py-2 px-4">Baju OK Dokter</td>
+<td class="py-2 px-4">OK</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="p-4 border-t border-glass-border bg-white/30 flex justify-end">
+<button class="px-6 py-2 rounded-full bg-surface-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-dim transition-colors">Tutup</button>
+</div>
+</div>
+</div>
+</body></html>

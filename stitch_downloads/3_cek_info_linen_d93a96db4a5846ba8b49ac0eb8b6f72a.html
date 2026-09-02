@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cek Info Linen - RFID Linen Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#6a3400",
+                        "status-error": "#E02020",
+                        "on-tertiary-fixed-variant": "#703800",
+                        "status-success": "#2DCA73",
+                        "on-primary-fixed": "#001d34",
+                        "surface-variant": "#e3e2e7",
+                        "primary-fixed": "#cfe4ff",
+                        "surface-dim": "#dad9df",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f4f3f8",
+                        "on-surface-variant": "#414750",
+                        "secondary": "#0b6d3a",
+                        "primary-container": "#005e98",
+                        "glass-bg": "rgba(255, 255, 255, 0.25)",
+                        "on-primary-container": "#b1d6ff",
+                        "tertiary-fixed-dim": "#ffb781",
+                        "background": "#faf9fe",
+                        "secondary-fixed-dim": "#83d99b",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e9e7ed",
+                        "surface-container-lowest": "#ffffff",
+                        "text-secondary": "#4A4A4A",
+                        "surface": "#faf9fe",
+                        "surface-container": "#eeedf3",
+                        "on-tertiary-fixed": "#301400",
+                        "tertiary-container": "#8c4802",
+                        "on-primary-fixed-variant": "#004a79",
+                        "outline": "#717881",
+                        "primary": "#004673",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005229",
+                        "glass-border": "rgba(255, 255, 255, 0.3)",
+                        "surface-tint": "#0c629c",
+                        "text-muted": "#6E6E73",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#177340",
+                        "inverse-surface": "#2f3034",
+                        "on-surface": "#1a1b1f",
+                        "surface-bright": "#faf9fe",
+                        "secondary-container": "#9ef6b5",
+                        "on-tertiary-container": "#ffc69e",
+                        "primary-fixed-dim": "#9acbff",
+                        "on-background": "#1a1b1f",
+                        "status-idle": "#8E8E93",
+                        "outline-variant": "#c1c7d1",
+                        "inverse-on-surface": "#f1f0f5",
+                        "secondary-fixed": "#9ef6b5",
+                        "error": "#ba1a1a",
+                        "text-primary": "#0A0A0A",
+                        "status-warning": "#F7B500",
+                        "on-secondary-fixed": "#00210d",
+                        "surface-container-highest": "#e3e2e7",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#9acbff",
+                        "tertiary-fixed": "#ffdcc5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "margin-page": "32px",
+                        "padding-card": "24px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "header-height": "64px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-md": ["Poppins"],
+                        "headline-lg": ["Poppins"],
+                        "label-md": ["Inter"],
+                        "label-lg": ["Poppins"],
+                        "data-mono": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "headline-md": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+                        "headline-lg": ["22px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                        "data-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                        "body-sm": ["11px", {"lineHeight": "16px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Ambient Glow */
+        .ambient-glow::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            top: -150px;
+            left: -150px;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen relative overflow-x-hidden antialiased">
+<!-- Fixed Background Image -->
+<div class="fixed inset-0 z-[-2] w-full h-full bg-cover bg-center" data-alt="A modern, high-tech industrial warehouse facility with bright, clean lighting, featuring advanced logistics equipment and clean white surfaces. The scene conveys real-time efficiency and precision, with a high-key light-mode aesthetic, deep blacks, pristine whites, and subtle cool blue atmospheric tones. The mood is professional and advanced." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXXBsPkxmw3iYAALVQ4Td-uHBOfuFG1fcIk0nVFFm0-4bYRmelYuQHMmbUgnYDrnqi5PoT7-Ozrb-XLRWSSWj9YgsQemu9cU5cq_pl9AsA9drXD-lFnRKmTgHZru7jkSLAoXKE-c7zOKH_wI3nrn2zgIEapVCqPywoJQBzoMhkZOV_XU4q7Go_KLcGYqMzot0-uhCPr0i6zC9mwOzPsLS04XOXeyv4pRfkbbIARzuMoDT6nGSLx3dqErjQ3DybmssZDQ'); filter: blur(4px) brightness(0.9);"></div>
+<!-- Dark overlay for better contrast if needed, subtle -->
+<div class="fixed inset-0 z-[-1] bg-white/20 mix-blend-overlay pointer-events-none"></div>
+<!-- Top Navigation -->
+<nav class="glass-panel rounded-full mt-4 mx-auto w-[calc(100%-64px)] max-w-7xl h-header-height sticky top-4 flex justify-between items-center px-6 z-50 shadow-md">
+<!-- Left: Logo & Brand -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden border border-glass-border">
+<img alt="Logo" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJZ3XHQGe0Y8ZN3BkYOJ-K2EOueZJjXl_Wu52c1D7RP1NekrghcLTd6Wxxp59QE-d978TWOFPssSxN_7FUioWKLfXatWj12Z09JNKMJX2x3HQ-tpMu58L5uxE6apXHzS1Hc3mz8LgkKnMobTenb_Crg_UP7sDvR-MGl8aeVGvWs1vsmzPKHEyVYW2YFdtp4TxxJkou8numRxh32w2rXMQwZWiaKWBr-jSWdikA24YULaX9FkMYRZhsO5Ms_yRgyiSXGQ"/>
+</div>
+<span class="font-headline-lg text-headline-lg text-primary">RFID Linen Pro</span>
+</div>
+<!-- Center: Navigation Links -->
+<div class="hidden md:flex items-center gap-2">
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10" href="#">Inventory</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10" href="#">Pendaftaran Linen</a>
+<!-- ACTIVE TAB -->
+<a class="bg-primary text-on-primary rounded-full px-4 py-1.5 flex items-center gap-1 font-label-md text-label-md transition-all" href="#">
+                Cek Info Linen
+            </a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10" href="#">Transactions</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10" href="#">Settings</a>
+</div>
+<!-- Right: Status Badges & Actions -->
+<div class="flex items-center gap-3">
+<!-- Reader Status -->
+<div class="flex items-center gap-2 bg-white/40 px-3 py-1 rounded-full border border-glass-border">
+<div class="w-2 h-2 rounded-full bg-status-success animate-pulse"></div>
+<span class="font-label-sm text-label-sm text-text-secondary">Reader ON</span>
+</div>
+<!-- Cloud Status -->
+<div class="flex items-center gap-2 bg-white/40 px-3 py-1 rounded-full border border-glass-border">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="font-label-sm text-label-sm text-text-secondary">Cloud DB ON</span>
+</div>
+<button class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center border border-glass-border transition-colors text-primary ml-2">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="max-w-7xl mx-auto px-margin-page pt-stack-lg pb-12">
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Konfigurasi Sensor (col-span-4) -->
+<div class="col-span-12 md:col-span-4 flex flex-col gap-gutter">
+<div class="glass-panel rounded-xl p-padding-card shadow-sm relative ambient-glow overflow-hidden">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-6 pb-4 border-b border-glass-border">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-text-primary">Konfigurasi Sensor</h2>
+</div>
+<!-- Content -->
+<div class="space-y-stack-md">
+<!-- Port Sensor Dropdown -->
+<div>
+<label class="block font-label-md text-label-md text-text-secondary mb-2 pl-1">Port Sensor</label>
+<div class="flex items-center gap-2">
+<div class="relative flex-1">
+<select class="w-full bg-white/40 border border-glass-border text-text-primary font-body-md text-body-md rounded-full px-4 py-2 appearance-none focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors backdrop-blur-sm">
+<option value="COM3">COM3 - Desktop Reader 1</option>
+<option value="COM4">COM4 - Handheld Scanner</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-text-secondary">
+<span class="material-symbols-outlined" style="font-size: 20px;">expand_more</span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-white/40 hover:bg-white/60 border border-glass-border flex items-center justify-center text-primary transition-colors flex-shrink-0" title="Refresh Ports">
+<span class="material-symbols-outlined" data-icon="refresh" style="font-size: 20px;">refresh</span>
+</button>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-4">
+<button class="w-full bg-status-success/20 hover:bg-status-success/30 border border-status-success/30 text-status-success font-label-lg text-label-lg rounded-full py-3 px-6 flex items-center justify-center gap-2 transition-all duration-300 shadow-sm hover:shadow-md">
+<span class="material-symbols-outlined" data-icon="play_arrow">play_arrow</span>
+                                Mulai Scan Pengecekan
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Hasil Cek Info Linen (col-span-8) -->
+<div class="col-span-12 md:col-span-8 flex flex-col gap-gutter">
+<div class="glass-panel rounded-xl p-padding-card shadow-sm relative ambient-glow min-h-[400px] flex flex-col">
+<!-- Header -->
+<div class="flex items-center justify-between mb-6 pb-4 border-b border-glass-border">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-text-primary">Hasil Cek Info Linen</h2>
+</div>
+</div>
+<!-- Body (State A - DEFAULT) -->
+<div class="flex-1 flex flex-col items-center justify-center text-center p-8 bg-white/10 rounded-lg border border-dashed border-glass-border">
+<span class="material-symbols-outlined text-status-idle mb-4" data-icon="search" style="font-size: 64px;">search</span>
+<p class="font-body-md text-body-md text-text-secondary max-w-sm">
+                            Silakan scan tag RFID untuk melihat detail.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

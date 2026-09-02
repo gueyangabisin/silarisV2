@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manajemen Nama Linen - RFID Linen Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "status-idle": "#8E8E93",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#004673",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb781",
+                        "tertiary": "#6a3400",
+                        "inverse-primary": "#9acbff",
+                        "secondary": "#0b6d3a",
+                        "status-warning": "#F7B500",
+                        "status-success": "#2DCA73",
+                        "glass-bg": "rgba(255, 255, 255, 0.25)",
+                        "background": "#faf9fe",
+                        "status-error": "#E02020",
+                        "on-error": "#ffffff",
+                        "text-secondary": "#4A4A4A",
+                        "surface-container-low": "#f4f3f8",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001d34",
+                        "primary-fixed": "#cfe4ff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#ffc69e",
+                        "surface-container-high": "#e9e7ed",
+                        "on-background": "#1a1b1f",
+                        "on-surface-variant": "#414750",
+                        "outline": "#717881",
+                        "on-tertiary-fixed": "#301400",
+                        "on-surface": "#1a1b1f",
+                        "surface": "#faf9fe",
+                        "glass-border": "rgba(255, 255, 255, 0.3)",
+                        "surface-tint": "#0c629c",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#8c4802",
+                        "on-secondary-container": "#177340",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#9ef6b5",
+                        "on-secondary-fixed": "#00210d",
+                        "tertiary-fixed": "#ffdcc5",
+                        "surface-variant": "#e3e2e7",
+                        "text-muted": "#6E6E73",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#9ef6b5",
+                        "secondary-fixed-dim": "#83d99b",
+                        "primary-container": "#0077BF",
+                        "on-primary-container": "#b1d6ff",
+                        "surface-container-highest": "#e3e2e7",
+                        "inverse-surface": "#2f3034",
+                        "inverse-on-surface": "#f1f0f5",
+                        "primary-fixed-dim": "#9acbff",
+                        "on-tertiary-fixed-variant": "#703800",
+                        "text-primary": "#0A0A0A",
+                        "surface-dim": "#dad9df",
+                        "on-secondary-fixed-variant": "#005229",
+                        "surface-container": "#eeedf3",
+                        "on-primary-fixed-variant": "#004a79",
+                        "surface-bright": "#faf9fe",
+                        "outline-variant": "#c1c7d1"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem"
+                    },
+                    spacing: {
+                        "stack-sm": "8px",
+                        "margin-page": "32px",
+                        "stack-lg": "24px",
+                        "gutter": "16px",
+                        "header-height": "64px",
+                        "padding-card": "24px",
+                        "stack-md": "16px"
+                    },
+                    fontFamily: {
+                        "label-md": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Poppins"],
+                        "label-lg": ["Poppins"]
+                    },
+                    fontSize: {
+                        "label-md": ["12px", { lineHeight: "16px", fontWeight: "600" }],
+                        "data-mono": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "body-sm": ["11px", { lineHeight: "16px", fontWeight: "400" }],
+                        "body-md": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+                        "headline-lg": ["22px", { lineHeight: "32px", letterSpacing: "0.02em", fontWeight: "700" }],
+                        "label-sm": ["11px", { lineHeight: "14px", fontWeight: "400" }],
+                        "headline-md": ["18px", { lineHeight: "26px", fontWeight: "600" }],
+                        "label-lg": ["14px", { lineHeight: "20px", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-1 {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Scrollbar for tables */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0,0,0,0.3); 
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen relative font-body-md overflow-x-hidden">
+<!-- Fixed Background Image -->
+<div class="fixed inset-0 z-[-1] bg-cover bg-center bg-no-repeat w-full h-full" data-alt="A detailed view of a modern industrial warehouse environment featuring high-tech storage systems and robotic logistics equipment. The scene is illuminated by bright, cool-toned overhead lighting creating a pristine, clean light-mode aesthetic. Depth is emphasized through rows of neatly organized materials fading into a soft atmospheric blur in the background. The mood is highly efficient, professional, and advanced." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDXGZwLObsN33soDuunOImSyj_P6ttlg2KW939LPk7OLJbRP33MOkx8raNH7Ao8yTeR5H2idw3F2JJmS5Q2DiEUA-8_tbFUYaX0KF9yRFqhQX1sEjTbGPMsihAsBHTmii_ZxiusxAgXdC_wtiaLcSwkjn8r7l0LfiP8SmZHVWVsZts7WdMtBkw-Nzq0tUs_IgjZw4B3wKnbU8dJd7NYP0g3Rcl4N2pQfk8lP63P-7wvzShnzop-UUII1plnsMgnGtDt3g')"></div>
+<!-- Ambient Glows -->
+<div class="fixed top-0 left-0 w-[400px] h-[400px] bg-white/20 rounded-full blur-[100px] z-[-1] pointer-events-none"></div>
+<div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] z-[-1] pointer-events-none"></div>
+<!-- Top Navigation Pill -->
+<nav class="bg-glass-bg backdrop-blur-[24px] rounded-full mt-4 mx-auto w-[calc(100%-64px)] max-w-7xl h-[64px] sticky top-4 border border-glass-border shadow-md flex justify-between items-center px-6 z-50 transition-transform duration-200">
+<!-- Brand / Logo -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/50 border border-glass-border flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined fill-1 text-primary">inventory_2</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">RFID Linen Pro</span>
+</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-1">
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/30" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/30" href="#">Pendaftaran Linen</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/30" href="#">Cek Info Linen</a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/30" href="#">Pengiriman</a>
+<!-- Active Dropdown Item -->
+<div class="relative group">
+<button class="bg-primary text-on-primary rounded-full px-4 py-1.5 flex items-center gap-1 font-label-md text-label-md shadow-sm">
+                    Manajemen Data
+                    <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+</button>
+<!-- Dropdown Menu (Hover) -->
+<div class="absolute top-full left-0 mt-2 w-48 bg-glass-bg backdrop-blur-[32px] border border-glass-border rounded-xl shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-50 py-2">
+<a class="block px-4 py-2 text-sm text-on-surface-variant hover:bg-white/40" href="#">Kategori Linen</a>
+<a class="block px-4 py-2 text-sm text-primary font-semibold bg-white/20" href="#">Nama Linen</a>
+<a class="block px-4 py-2 text-sm text-on-surface-variant hover:bg-white/40" href="#">Lokasi / Ruangan</a>
+</div>
+</div>
+<a class="text-on-surface-variant hover:text-primary px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/30" href="#">Admin Cloud</a>
+</div>
+<!-- Status Badges -->
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 px-3 py-1 bg-white/30 border border-glass-border rounded-full shadow-sm">
+<div class="w-2 h-2 rounded-full bg-status-error animate-pulse"></div>
+<span class="font-label-sm text-label-sm text-text-secondary">Reader OFF</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-white/30 border border-glass-border rounded-full shadow-sm">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="font-label-sm text-label-sm text-text-secondary">Cloud DB ON</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-7xl mx-auto px-margin-page pt-[104px] pb-12">
+<!-- Full Width Glass Panel -->
+<div class="bg-white/25 backdrop-blur-[24px] rounded-2xl border border-glass-border shadow-sm p-padding-card flex flex-col gap-stack-lg min-h-[600px]">
+<!-- Panel Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-glass-border pb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-white/40 border border-glass-border flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined fill-1 text-primary text-[24px]">style</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary">Manajemen Nama Linen</h1>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1">Kelola daftar nama spesifik linen di bawah setiap kategori.</p>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary transition-colors duration-200 rounded-full px-5 py-2 flex items-center gap-2 font-label-md text-label-md shadow-sm border border-glass-border whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Tambah Data
+                </button>
+</div>
+<!-- Controls (Filter) -->
+<div class="flex items-center gap-4">
+<div class="relative w-64">
+<select class="w-full appearance-none bg-white/30 border border-glass-border text-text-primary font-body-md rounded-full px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent cursor-pointer shadow-sm">
+<option value="all">Semua Kategori</option>
+<option value="sprei">Sprei</option>
+<option value="selimut">Selimut</option>
+<option value="handuk">Handuk</option>
+<option value="sarung_bantal">Sarung Bantal</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="flex-grow bg-white/10 rounded-xl border border-glass-border overflow-hidden flex flex-col shadow-inner">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-white/40 backdrop-blur-md sticky top-0 z-10 border-b border-glass-border">
+<tr>
+<th class="py-3 px-4 font-label-md text-label-md text-text-secondary uppercase tracking-wider">Nama Linen</th>
+<th class="py-3 px-4 font-label-md text-label-md text-text-secondary uppercase tracking-wider">Kategori</th>
+<th class="py-3 px-4 font-label-md text-label-md text-text-secondary uppercase tracking-wider">Keterangan</th>
+<th class="py-3 px-4 font-label-md text-label-md text-text-secondary uppercase tracking-wider">Jumlah Linen Terkait</th>
+<th class="py-3 px-4 font-label-md text-label-md text-text-secondary uppercase tracking-wider text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-glass-border">
+<!-- Row 1 -->
+<tr class="hover:bg-white/20 transition-colors">
+<td class="py-3 px-4 font-body-md text-text-primary font-medium">Sprei Standard A</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-surface-variant text-on-surface-variant border border-glass-border shadow-sm">Sprei</span>
+</td>
+<td class="py-3 px-4 font-body-sm text-text-secondary">Sprei katun putih standard untuk bangsal umum.</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-primary">124</td>
+<td class="py-3 px-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors border border-glass-border shadow-sm" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-error-container text-on-error-container flex items-center justify-center hover:bg-status-error hover:text-on-error transition-colors border border-glass-border shadow-sm" title="Hapus">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/20 transition-colors">
+<td class="py-3 px-4 font-body-md text-text-primary font-medium">Sprei Queen Size</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-surface-variant text-on-surface-variant border border-glass-border shadow-sm">Sprei</span>
+</td>
+<td class="py-3 px-4 font-body-sm text-text-secondary">Sprei ukuran queen untuk ruang VIP.</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-primary">45</td>
+<td class="py-3 px-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors border border-glass-border shadow-sm" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-error-container text-on-error-container flex items-center justify-center hover:bg-status-error hover:text-on-error transition-colors border border-glass-border shadow-sm" title="Hapus">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white/20 transition-colors">
+<td class="py-3 px-4 font-body-md text-text-primary font-medium">Selimut Fleece B</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-surface-variant text-on-surface-variant border border-glass-border shadow-sm">Selimut</span>
+</td>
+<td class="py-3 px-4 font-body-sm text-text-secondary">Selimut bahan fleece tebal warna biru.</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-primary">89</td>
+<td class="py-3 px-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors border border-glass-border shadow-sm" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-error-container text-on-error-container flex items-center justify-center hover:bg-status-error hover:text-on-error transition-colors border border-glass-border shadow-sm" title="Hapus">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-white/20 transition-colors">
+<td class="py-3 px-4 font-body-md text-text-primary font-medium">Handuk Mandi Besar</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-surface-variant text-on-surface-variant border border-glass-border shadow-sm">Handuk</span>
+</td>
+<td class="py-3 px-4 font-body-sm text-text-secondary">Handuk mandi ukuran 70x140cm.</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-primary">210</td>
+<td class="py-3 px-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors border border-glass-border shadow-sm" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-error-container text-on-error-container flex items-center justify-center hover:bg-status-error hover:text-on-error transition-colors border border-glass-border shadow-sm" title="Hapus">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- UI STATE MOCKUPS (Hidden by default, can be toggled via JS if needed, shown here for design reference) -->
+<!-- Modal: Add/Edit -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-on-background/40 backdrop-blur-sm" id="modal-add-edit">
+<div class="bg-surface-bright rounded-2xl w-full max-w-md shadow-2xl border border-glass-border overflow-hidden">
+<div class="px-6 py-4 border-b border-surface-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-md text-headline-md text-text-primary">Tambah Nama Linen</h3>
+<button class="text-text-secondary hover:text-text-primary transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1 ml-1">Kategori <span class="text-status-error">*</span></label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface border border-outline-variant text-text-primary font-body-md rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
+<option disabled="" selected="" value="">Pilih Kategori</option>
+<option value="sprei">Sprei</option>
+<option value="selimut">Selimut</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1 ml-1">Nama Linen <span class="text-status-error">*</span></label>
+<input class="w-full bg-surface border border-outline-variant text-text-primary font-body-md rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-text-muted" placeholder="Masukkan nama linen spesifik" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1 ml-1">Keterangan</label>
+<textarea class="w-full bg-surface border border-outline-variant text-text-primary font-body-md rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-text-muted resize-none" placeholder="Opsional" rows="3"></textarea>
+</div>
+</div>
+<div class="px-6 py-4 border-t border-surface-variant bg-surface-container-low flex justify-end gap-3">
+<button class="px-4 py-2 rounded-full font-label-md text-label-md text-text-secondary hover:bg-surface-variant transition-colors">Batal</button>
+<button class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">Simpan</button>
+</div>
+</div>
+</div>
+<!-- Modal: Delete Confirmation -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-on-background/40 backdrop-blur-sm" id="modal-delete-confirm">
+<div class="bg-surface-bright rounded-2xl w-full max-w-sm shadow-2xl border border-glass-border p-6 text-center">
+<div class="w-16 h-16 rounded-full bg-error-container text-status-error flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-[32px] fill-1">warning</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary mb-2">Hapus Nama Linen?</h3>
+<p class="font-body-md text-text-secondary mb-6">Anda yakin ingin menghapus <strong class="text-text-primary">Sprei Queen Size</strong>? Tindakan ini tidak dapat dibatalkan.</p>
+<div class="flex justify-center gap-3">
+<button class="px-5 py-2 rounded-full font-label-md text-label-md text-text-secondary hover:bg-surface-variant transition-colors border border-outline-variant">Batal</button>
+<button class="px-5 py-2 rounded-full bg-status-error text-on-error font-label-md text-label-md hover:bg-error transition-colors shadow-sm">Hapus</button>
+</div>
+</div>
+</div>
+<!-- Modal: Delete Error -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-on-background/40 backdrop-blur-sm" id="modal-delete-error">
+<div class="bg-surface-bright rounded-2xl w-full max-w-sm shadow-2xl border border-glass-border p-6 text-center">
+<div class="w-16 h-16 rounded-full bg-error-container text-status-error flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-[32px] fill-1">error</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary mb-2">Gagal Menghapus</h3>
+<p class="font-body-md text-text-secondary mb-6">Tidak dapat menghapus. Nama linen ini masih dipakai oleh <strong class="text-text-primary">45 data Linen</strong>.</p>
+<button class="w-full px-5 py-2 rounded-full bg-surface-variant text-text-primary font-label-md text-label-md hover:bg-surface-dim transition-colors shadow-sm">Tutup</button>
+</div>
+</div>
+</body></html>

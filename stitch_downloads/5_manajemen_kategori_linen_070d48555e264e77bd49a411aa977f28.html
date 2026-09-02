@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Manajemen Kategori Linen - RFID Linen Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#0c629c",
+                        "surface-variant": "#e3e2e7",
+                        "on-secondary-container": "#177340",
+                        "tertiary-container": "#8c4802",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#6a3400",
+                        "text-primary": "#0A0A0A",
+                        "primary-container": "#005e98",
+                        "surface-container": "#eeedf3",
+                        "glass-bg": "rgba(255, 255, 255, 0.25)",
+                        "on-surface": "#1a1b1f",
+                        "surface-dim": "#dad9df",
+                        "on-background": "#1a1b1f",
+                        "tertiary-fixed-dim": "#ffb781",
+                        "status-warning": "#F7B500",
+                        "on-primary-fixed-variant": "#004a79",
+                        "on-secondary-fixed-variant": "#005229",
+                        "on-primary-fixed": "#001d34",
+                        "surface-bright": "#faf9fe",
+                        "surface-container-lowest": "#ffffff",
+                        "status-success": "#2DCA73",
+                        "secondary-fixed": "#9ef6b5",
+                        "primary-fixed-dim": "#9acbff",
+                        "glass-border": "rgba(255, 255, 255, 0.3)",
+                        "secondary-fixed-dim": "#83d99b",
+                        "surface": "#faf9fe",
+                        "primary": "#004673",
+                        "status-idle": "#8E8E93",
+                        "tertiary-fixed": "#ffdcc5",
+                        "surface-container-high": "#e9e7ed",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#00210d",
+                        "inverse-primary": "#9acbff",
+                        "inverse-on-surface": "#f1f0f5",
+                        "on-error-container": "#93000a",
+                        "text-secondary": "#4A4A4A",
+                        "on-primary-container": "#b1d6ff",
+                        "primary-fixed": "#cfe4ff",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f4f3f8",
+                        "secondary": "#0b6d3a",
+                        "outline-variant": "#c1c7d1",
+                        "secondary-container": "#9ef6b5",
+                        "surface-container-highest": "#e3e2e7",
+                        "outline": "#717881",
+                        "on-tertiary-container": "#ffc69e",
+                        "inverse-surface": "#2f3034",
+                        "on-tertiary-fixed-variant": "#703800",
+                        "status-error": "#E02020",
+                        "on-surface-variant": "#414750",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#301400",
+                        "text-muted": "#6E6E73",
+                        "background": "#faf9fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "header-height": "64px",
+                        "margin-page": "32px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "padding-card": "24px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "headline-md": ["Poppins"],
+                        "label-lg": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "data-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-sm": ["11px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "400" }],
+                        "headline-lg": ["22px", { "lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "headline-md": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .backdrop-blur-custom { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+        .glass-panel { background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .pulse-red { animation: pulseRed 2s infinite; }
+        @keyframes pulseRed { 0% { box-shadow: 0 0 0 0 rgba(224, 32, 32, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(224, 32, 32, 0); } 100% { box-shadow: 0 0 0 0 rgba(224, 32, 32, 0); } }
+        .glow-green { box-shadow: 0 0 10px rgba(45, 202, 115, 0.6); }
+        body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden relative">
+<!-- Fixed Background -->
+<div class="fixed inset-0 z-[-1]">
+<img class="w-full h-full object-cover" data-alt="A modern, high-tech industrial warehouse interior. Bright, clean, and organized. Rows of automated storage systems and robotic handling equipment are visible. Soft, diffused daylight filtering through large windows creates a bright, high-key light-mode aesthetic. The color palette emphasizes cool whites, light grays, and subtle metallic tones, conveying precision and real-time efficiency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3XVwJ9ThrRHr4rTdSqvOpM6TJdcRZZUUDDjXbwahMWfZJES5LKgmXpfrsdg4Tz3StQ1ephjdMP4phOKUjKekD_4WYYWYh6ARoC2c5jnYIPDUEXIY2SP8Pc8SVs3lgPvd5GixWj2XRpK2Fkr47UaH67Ce2_JVaxQWNdQ_Lknn0Srn70daho6IJWLMuBV1v_TZnZlYZGtjzr2yWx9-YdOH5-r8fVX4koge2TtBvqfn-T0fAfsZnOy823AUs3R0p26wEoQ">
+</div>
+<!-- Ambient Glows -->
+<div class="fixed top-0 left-0 w-[300px] h-[300px] rounded-full bg-white opacity-5 blur-[100px] z-[-1] pointer-events-none"></div>
+<div class="fixed bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-white opacity-5 blur-[100px] z-[-1] pointer-events-none"></div>
+<!-- Top Navigation (Pill Bar) -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-3 w-full max-w-7xl mx-auto rounded-full mt-4 bg-glass-bg backdrop-blur-custom border border-glass-border shadow-lg">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-white/50 flex items-center justify-center border border-glass-border">
+<img class="w-full h-full object-contain p-1" data-alt="RFID Linen Pro application logo, featuring a minimalist, high-tech icon blending a radio wave symbol with a folded fabric element. Clean lines and professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbWGsqlHZUeprctsxr_KYN0512YWD7sky8VKkVlLRelFPFqgEXDpjgj0gWFW9U3Fpe9qc5xWwLAK6OmJwxWoaNu_rF-DAXJxX3oqV6qIkgMNx8P9IZ_raHleJKxl649VRLb75ynLY-SE6qhlrn7nboPs6igUP5-hUtonM_xilSipYdnBEAxITsr5wo2Gq9V17HBH1EqmyW3wduYwxO-i3IygbQt5ZXlyPc9Rz_HkOhkDeWK5-F1QqeeC8PonPaUZQGCg">
+</div>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">RFID Linen Pro</span>
+</div>
+<ul class="flex items-center gap-2">
+<li class=""><a class="text-on-surface-variant px-4 py-1 hover:bg-glass-border transition-colors duration-300 rounded-full flex items-center gap-1" href="#"><span class="font-label-lg text-label-lg">Dashboard</span></a></li>
+<li class=""><a class="text-on-surface-variant px-4 py-1 hover:bg-glass-border transition-colors duration-300 rounded-full flex items-center gap-1" href="#"><span class="font-label-lg text-label-lg">Pendaftaran Linen</span></a></li><li class=""><a class="text-on-surface-variant px-4 py-1 hover:bg-glass-border transition-colors duration-300 rounded-full flex items-center gap-1" href="#"><span class="font-label-lg text-label-lg">Cek Info Linen</span></a></li>
+<li class=""><a class="text-on-surface-variant px-4 py-1 hover:bg-glass-border transition-colors duration-300 rounded-full flex items-center gap-1" href="#"><span class="font-label-lg text-label-lg">Pengiriman</span></a></li>
+<li class="relative group">
+<a class="bg-primary text-on-primary rounded-full px-4 py-1 flex items-center gap-1 scale-95 transition-transform" href="#">
+<span class="font-label-lg text-label-lg">Manajemen Data</span>
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</a>
+<!-- Dropdown -->
+<div class="absolute top-full mt-2 w-48 rounded-xl glass-panel backdrop-blur-custom shadow-lg hidden group-hover:block overflow-hidden z-50">
+<a class="block px-4 py-2 text-sm text-on-surface hover:bg-white/20 font-label-md text-primary" href="#">Kategori Linen</a>
+<a class="block px-4 py-2 text-sm text-on-surface hover:bg-white/20 font-label-md" href="#">Data Linen</a>
+</div>
+</li>
+<li class=""><a class="text-on-surface-variant px-4 py-1 hover:bg-glass-border transition-colors duration-300 rounded-full flex items-center gap-1" href="#"><span class="font-label-lg text-label-lg">Admin Cloud</span></a></li>
+</ul>
+<div class="flex items-center gap-3">
+<!-- Reader OFF Status -->
+<div class="flex items-center gap-2 px-3 py-1 rounded-full glass-panel backdrop-blur-custom">
+<div class="w-2 h-2 rounded-full bg-status-error pulse-red"></div>
+<span class="text-xs font-label-md text-on-surface-variant">Reader OFF</span>
+</div>
+<!-- Cloud DB ON Status -->
+<div class="flex items-center gap-2 px-3 py-1 rounded-full glass-panel backdrop-blur-custom">
+<div class="w-2 h-2 rounded-full bg-status-success glow-green"></div>
+<span class="text-xs font-label-md text-on-surface-variant">Cloud DB ON</span>
+</div>
+
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow pt-[88px] px-margin-page pb-8 max-w-7xl mx-auto w-full flex flex-col gap-stack-lg">
+<!-- Main Panel -->
+<div class="glass-panel backdrop-blur-custom rounded-2xl p-padding-card w-full shadow-sm flex flex-col">
+<!-- Panel Header -->
+<div class="flex justify-between items-start mb-6 border-b border-glass-border pb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center bg-white/40 shadow-inner">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">category</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Manajemen Kategori Linen</h1>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1">Kelola daftar kategori untuk pengelompokan jenis linen.</p>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-lg text-label-lg flex items-center gap-2 hover:bg-primary-container transition-colors shadow-md">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Tambah Data
+                </button>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-glass-border text-on-surface-variant">
+<th class="py-3 px-4 font-label-md text-label-md uppercase tracking-wider">Nama Kategori</th>
+<th class="py-3 px-4 font-label-md text-label-md uppercase tracking-wider">Keterangan</th>
+<th class="py-3 px-4 font-label-md text-label-md uppercase tracking-wider text-center">Jumlah Linen Terkait</th>
+<th class="py-3 px-4 font-label-md text-label-md uppercase tracking-wider text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-glass-border">
+<tr class="hover:bg-white/10 transition-colors">
+<td class="py-3 px-4 font-body-sm text-body-sm font-medium text-on-surface">Sprei</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">Linen penutup kasur berbagai ukuran</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-center">128</td>
+<td class="py-3 px-4 text-right">
+<button class="p-1.5 text-text-muted hover:text-primary rounded-full hover:bg-white/30 transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1.5 text-text-muted hover:text-status-error rounded-full hover:bg-white/30 transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-white/10 transition-colors">
+<td class="py-3 px-4 font-body-sm text-body-sm font-medium text-on-surface">Selimut</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">Linen penghangat, termasuk jenis fleece dan tebal</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-center">64</td>
+<td class="py-3 px-4 text-right">
+<button class="p-1.5 text-text-muted hover:text-primary rounded-full hover:bg-white/30 transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1.5 text-text-muted hover:text-status-error rounded-full hover:bg-white/30 transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-white/10 transition-colors">
+<td class="py-3 px-4 font-body-sm text-body-sm font-medium text-on-surface">Handuk</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">Linen untuk keperluan mandi dan kebersihan</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-center">95</td>
+<td class="py-3 px-4 text-right">
+<button class="p-1.5 text-text-muted hover:text-primary rounded-full hover:bg-white/30 transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1.5 text-text-muted hover:text-status-error rounded-full hover:bg-white/30 transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-white/10 transition-colors">
+<td class="py-3 px-4 font-body-sm text-body-sm font-medium text-on-surface">Sarung Bantal</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">Linen pelapis bantal dan guling</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-center">33</td>
+<td class="py-3 px-4 text-right">
+<button class="p-1.5 text-text-muted hover:text-primary rounded-full hover:bg-white/30 transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1.5 text-text-muted hover:text-status-error rounded-full hover:bg-white/30 transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+
+
+</body></html>

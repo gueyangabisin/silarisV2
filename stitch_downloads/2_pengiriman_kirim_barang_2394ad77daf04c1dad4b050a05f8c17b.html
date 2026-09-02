@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pengiriman - RFID Linen Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#ffb781",
+                      "surface-container-low": "#f4f3f8",
+                      "status-idle": "#8E8E93",
+                      "on-secondary-container": "#177340",
+                      "status-success": "#2DCA73",
+                      "surface-variant": "#e3e2e7",
+                      "error": "#ba1a1a",
+                      "outline-variant": "#c1c7d1",
+                      "surface": "#faf9fe",
+                      "text-primary": "#0A0A0A",
+                      "on-secondary-fixed": "#00210d",
+                      "glass-bg": "rgba(255, 255, 255, 0.25)",
+                      "on-tertiary-fixed-variant": "#703800",
+                      "on-background": "#1a1b1f",
+                      "primary-fixed": "#cfe4ff",
+                      "status-warning": "#F7B500",
+                      "tertiary-container": "#8c4802",
+                      "on-tertiary-fixed": "#301400",
+                      "status-error": "#E02020",
+                      "text-muted": "#6E6E73",
+                      "outline": "#717881",
+                      "on-primary-fixed": "#001d34",
+                      "on-error": "#ffffff",
+                      "primary": "#004673",
+                      "primary-container": "#0077BF",
+                      "glass-border": "rgba(255, 255, 255, 0.3)",
+                      "background": "#faf9fe",
+                      "primary-fixed-dim": "#9acbff",
+                      "inverse-primary": "#9acbff",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#0c629c",
+                      "on-primary-fixed-variant": "#004a79",
+                      "secondary-container": "#9ef6b5",
+                      "inverse-on-surface": "#f1f0f5",
+                      "surface-container-highest": "#e3e2e7",
+                      "secondary-fixed": "#9ef6b5",
+                      "on-surface-variant": "#414750",
+                      "secondary-fixed-dim": "#83d99b",
+                      "text-secondary": "#4A4A4A",
+                      "surface-container": "#eeedf3",
+                      "secondary": "#0b6d3a",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#faf9fe",
+                      "surface-container-high": "#e9e7ed",
+                      "on-secondary-fixed-variant": "#005229",
+                      "surface-dim": "#dad9df",
+                      "on-primary-container": "#b1d6ff",
+                      "tertiary": "#6a3400",
+                      "on-surface": "#1a1b1f",
+                      "tertiary-fixed": "#ffdcc5",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-container": "#ffc69e",
+                      "inverse-surface": "#2f3034",
+                      "on-error-container": "#93000a",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "header-height": "64px",
+                      "margin-page": "32px",
+                      "stack-md": "16px",
+                      "gutter": "16px",
+                      "padding-card": "24px",
+                      "stack-sm": "8px",
+                      "stack-lg": "24px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Poppins"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Poppins"
+                      ],
+                      "label-lg": [
+                              "Poppins"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "22px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "18px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYpKIRK4ReL4A-FveQkbdPv5B4VjjfkyBl9KsDajh2CuAuzEGl3rI8bwLBi39HelnIqrehgapHkOZgBZ6EcsWE6BlAljufypZhDvKE_Cv3VpFyPBaCI5IzXMb43n_0N-qcB393elZ1dUsEJBeSUiFIW7nfmhqrdvGxjEgybTc5lrEvlB8u6bpGxr7W64XnLIa9uDcGQdGD0oAYWjsF2wIoL-ysweJbIJyzSKH3RGyViDGYrPjNHo48i2pIRVVO8jpYrw');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .glass-input {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+        }
+        .glass-input:focus {
+            border-color: #005E98;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 94, 152, 0.2);
+        }
+        .ambient-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        
+        /* Custom Scrollbar for Manifest */
+        .manifest-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .manifest-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        .manifest-scroll::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-text-primary antialiased relative overflow-x-hidden font-body-md">
+<!-- Top Navigation (Pill Bar) -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-3 w-full max-w-7xl mx-auto rounded-full mt-4 bg-glass-bg border border-glass-border shadow-lg backdrop-blur-3xl">
+<!-- Logo & Brand -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Abstract colorful swoosh logo for a logistics company" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE2-2FrFPToR6E2uUqq5tM6L17S3dhYLEjJANEcI4Ge2Ie96sBa3KZoVTpiHpFH4M07lvPNMn6uomhH5enNs0g6fcMoD4ivnAunA_TgHsTwEgEWW7yYpORPCTvVMnHNSLxV7iuTnCYd5VXmGKmAoM8Y7cyWHl9P_vPaD80nTp9jqjqqGLkffxCjVyGe_YN7hCs9d7zo25INkjVFbtV39E0BA5WBLkGcAmYUjNnNuRGiWCj2v7zufW4VkQ6s_s9lo9gDQ"/>
+</div>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">RFID Linen Pro</span>
+</div>
+<!-- Navigation Links -->
+<div class="flex items-center gap-1 hidden md:flex">
+<a class="text-on-surface-variant px-4 py-1 hover:bg-glass-border transition-colors duration-300 rounded-full font-label-md text-label-md flex items-center gap-1" href="#">
+                Dashboard
+            </a>
+<a class="text-on-surface-variant px-4 py-1 hover:bg-glass-border transition-colors duration-300 rounded-full font-label-md text-label-md flex items-center gap-1" href="#">
+                Pendaftaran Linen
+            </a>
+<a class="bg-primary text-on-primary rounded-full px-4 py-1 flex items-center gap-1 font-label-md text-label-md scale-95 transition-transform shadow-md" href="#">
+                Pengiriman
+            </a>
+<a class="text-on-surface-variant px-4 py-1 hover:bg-glass-border transition-colors duration-300 rounded-full font-label-md text-label-md flex items-center gap-1" href="#">
+                Manajemen Data
+            </a>
+<a class="text-on-surface-variant px-4 py-1 hover:bg-glass-border transition-colors duration-300 rounded-full font-label-md text-label-md flex items-center gap-1" href="#">
+                Admin Cloud
+            </a>
+</div>
+<!-- Trailing Icon Actions / Connectivity Indicators -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 bg-white/40 px-3 py-1 rounded-full border border-white/50 backdrop-blur-md shadow-sm">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="material-symbols-outlined text-[14px] text-text-primary" style="font-variation-settings: 'FILL' 1;">sensors</span>
+<span class="text-label-sm font-label-sm text-text-primary hidden sm:inline-block">RFID</span>
+</div>
+<div class="flex items-center gap-1 bg-white/40 px-3 py-1 rounded-full border border-white/50 backdrop-blur-md shadow-sm">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="material-symbols-outlined text-[14px] text-text-primary" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+<span class="text-label-sm font-label-sm text-text-primary hidden sm:inline-block">Cloud</span>
+</div>
+<div class="flex items-center gap-1 bg-white/40 px-3 py-1 rounded-full border border-white/50 backdrop-blur-md shadow-sm">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="material-symbols-outlined text-[14px] text-text-primary" style="font-variation-settings: 'FILL' 1;">wifi</span>
+<span class="text-label-sm font-label-sm text-text-primary hidden sm:inline-block">Local</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-[104px] pb-margin-page px-margin-page max-w-[1600px] mx-auto w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter relative">
+<!-- Left Column: Control Panel (3 columns) -->
+<div class="lg:col-span-3 flex flex-col gap-gutter relative z-10">
+<div class="ambient-glow -top-10 -left-10"></div>
+<div class="glass-panel rounded-xl p-padding-card flex flex-col h-full relative overflow-hidden">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-stack-lg pb-stack-sm border-b border-glass-border">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shadow-inner">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-text-primary m-0">Tujuan Pengiriman</h2>
+</div>
+<!-- Form Controls -->
+<div class="flex flex-col gap-stack-md flex-grow">
+<!-- Dropdown Rumah Sakit -->
+<div class="flex flex-col gap-1 relative">
+<label class="text-label-sm font-label-sm text-text-secondary pl-3">Rumah Sakit Tujuan</label>
+<div class="relative">
+<select class="glass-input w-full rounded-full py-2.5 px-4 text-body-md font-body-md text-text-primary appearance-none cursor-pointer focus:ring-0">
+<option disabled="" selected="" value="">-- Pilih Rumah Sakit --</option>
+<option value="rs1">RS Medika Utama</option>
+<option value="rs2">RS Sentosa Sejahtera</option>
+<option value="rs3">Klinik Kasih Ibu</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Dropdown Port Sensor -->
+<div class="flex flex-col gap-1 relative">
+<label class="text-label-sm font-label-sm text-text-secondary pl-3">Port Sensor</label>
+<div class="flex gap-2">
+<div class="relative flex-grow">
+<select class="glass-input w-full rounded-full py-2.5 px-4 text-body-md font-body-md text-text-primary appearance-none cursor-pointer focus:ring-0">
+<option value="COM1">COM1 - Outbound Gate A</option>
+<option value="COM2">COM2 - Outbound Gate B</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none">expand_more</span>
+</div>
+<button class="w-[42px] h-[42px] rounded-full glass-input flex items-center justify-center hover:bg-white/30 transition-colors shadow-sm flex-shrink-0" title="Refresh Ports">
+<span class="material-symbols-outlined text-[20px] text-primary">refresh</span>
+</button>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-stack-sm pt-stack-sm">
+<button class="w-full rounded-full bg-secondary-container hover:bg-secondary-fixed-dim text-on-secondary-container font-label-lg text-label-lg py-3 px-6 flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg border border-secondary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                Mulai Scan Pengiriman
+                            </button>
+</div>
+</div>
+<!-- Mini Stats (Summary) -->
+<div class="mt-stack-lg pt-stack-md border-t border-glass-border">
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-white/30 rounded-lg p-2 text-center border border-white/40 shadow-sm flex flex-col justify-center">
+<span class="text-label-sm font-label-sm text-text-secondary mb-1">Total Scan</span>
+<span class="text-headline-md font-headline-md text-text-primary leading-none">0</span>
+</div>
+<div class="bg-status-success/10 rounded-lg p-2 text-center border border-status-success/20 shadow-sm flex flex-col justify-center">
+<span class="text-label-sm font-label-sm text-text-secondary mb-1">Siap Dikirim</span>
+<span class="text-headline-md font-headline-md text-status-success leading-none">0</span>
+</div>
+<div class="bg-status-error/10 rounded-lg p-2 text-center border border-status-error/20 shadow-sm flex flex-col justify-center">
+<span class="text-label-sm font-label-sm text-text-secondary mb-1">Tidak Valid</span>
+<span class="text-headline-md font-headline-md text-status-error leading-none">0</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Manifest Panel (9 columns) -->
+<div class="lg:col-span-9 flex flex-col gap-gutter relative z-10 h-[calc(100vh-140px)] min-h-[600px]">
+<div class="ambient-glow top-0 right-0"></div>
+<div class="glass-panel rounded-xl flex flex-col h-full overflow-hidden">
+<!-- Header -->
+<div class="px-padding-card py-4 border-b border-glass-border flex justify-between items-center bg-white/20 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant/50 flex items-center justify-center text-text-primary border border-white/50 shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">list_alt</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-text-primary m-0">Manifest Pengiriman</h2>
+<div class="flex items-center gap-1.5 bg-status-idle/10 px-2.5 py-0.5 rounded-full border border-status-idle/20">
+<div class="w-1.5 h-1.5 rounded-full bg-status-idle"></div>
+<span class="text-label-sm font-label-sm text-text-secondary">Idle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Header Actions -->
+<div class="flex items-center gap-2">
+<button class="glass-input rounded-full px-4 py-2 flex items-center gap-2 hover:bg-white/40 transition-colors shadow-sm text-text-primary font-label-md text-label-md disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                                Cetak
+                            </button>
+<button class="glass-input w-[38px] h-[38px] rounded-full flex items-center justify-center hover:bg-white/40 transition-colors shadow-sm text-text-primary" title="Reset Manifest">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+</div>
+</div>
+<!-- Body: STATE A (Empty State) -->
+<div class="flex-grow flex flex-col items-center justify-center p-padding-card text-center relative manifest-scroll overflow-y-auto">
+<!-- Watermark Icon -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">inbox</span>
+</div>
+<div class="relative z-10 flex flex-col items-center max-w-md">
+<div class="w-20 h-20 rounded-full bg-white/30 flex items-center justify-center mb-4 shadow-inner border border-white/50">
+<span class="material-symbols-outlined text-[40px] text-primary" style="font-variation-settings: 'FILL' 1;">inbox</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary mb-2">Pilih Rumah Sakit tujuan, lalu tekan "Mulai Scan Pengiriman"</h3>
+<p class="font-body-md text-body-md text-text-secondary">Data EPC yang valid akan masuk ke manifest secara real-time berdasarkan pemindaian dari sensor RFID di Outbound Gate.</p>
+</div>
+</div>
+<!-- Footer / Actions -->
+<div class="px-padding-card py-4 border-t border-glass-border bg-white/20 backdrop-blur-md flex justify-end">
+<button class="rounded-full bg-tertiary-fixed-dim/50 text-on-tertiary-fixed font-label-lg text-label-lg py-2.5 px-6 flex items-center justify-center gap-2 transition-all cursor-not-allowed border border-tertiary/20 shadow-sm" disabled="">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">send</span>
+                            Proses Pengiriman
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- STATE B PREVIEW (For Demonstration Purposes as requested) -->
+<div class="mt-12 opacity-80 pointer-events-none grayscale-[30%]">
+<div class="flex items-center gap-2 mb-4">
+<h3 class="font-headline-lg text-headline-lg text-text-primary">Preview Manifest (State Terisi)</h3>
+<span class="text-label-sm font-label-sm text-text-muted bg-white/50 px-2 py-1 rounded-full border border-white/30">Hanya untuk Referensi Desain</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter relative">
+<!-- Mini Stats Ref -->
+<div class="lg:col-span-3 flex flex-col justify-end">
+<div class="glass-panel rounded-xl p-4 border-t-4 border-t-primary">
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-white/30 rounded-lg p-2 text-center border border-white/40 shadow-sm flex flex-col justify-center">
+<span class="text-label-sm font-label-sm text-text-secondary mb-1">Total</span>
+<span class="text-headline-md font-headline-md text-text-primary leading-none">18</span>
+</div>
+<div class="bg-status-success/20 rounded-lg p-2 text-center border border-status-success/30 shadow-sm flex flex-col justify-center">
+<span class="text-label-sm font-label-sm text-text-secondary mb-1">Siap</span>
+<span class="text-headline-md font-headline-md text-status-success leading-none">16</span>
+</div>
+<div class="bg-status-error/20 rounded-lg p-2 text-center border border-status-error/30 shadow-sm flex flex-col justify-center">
+<span class="text-label-sm font-label-sm text-text-secondary mb-1">Invalid</span>
+<span class="text-headline-md font-headline-md text-status-error leading-none">2</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Table Ref -->
+<div class="lg:col-span-9">
+<div class="glass-panel rounded-xl overflow-hidden flex flex-col border-t-4 border-t-primary">
+<!-- Header Bar Ref -->
+<div class="px-6 py-3 border-b border-glass-border flex justify-between items-center bg-white/40">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-text-primary m-0">Manifest Pengiriman</h2>
+<div class="flex items-center gap-1.5 bg-status-warning/20 px-2.5 py-0.5 rounded-full border border-status-warning/30">
+<div class="w-1.5 h-1.5 rounded-full bg-status-warning animate-pulse"></div>
+<span class="text-label-sm font-label-sm text-text-primary font-bold">Scanning...</span>
+</div>
+</div>
+<div class="text-label-md font-label-md text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">RS Medika Utama</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-glass-border bg-white/20">
+<th class="px-6 py-3 text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">EPC ID</th>
+<th class="px-6 py-3 text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Item</th>
+<th class="px-6 py-3 text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Waktu Scan</th>
+<th class="px-6 py-3 text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-glass-border">
+<tr class="hover:bg-white/10 transition-colors">
+<td class="px-6 py-3 font-data-mono text-data-mono text-text-primary">E28011303000020A</td>
+<td class="px-6 py-3 font-body-sm text-body-sm text-text-primary">Sprei Queen Size</td>
+<td class="px-6 py-3 font-data-mono text-data-mono text-text-secondary">08:14:22</td>
+<td class="px-6 py-3">
+<div class="inline-flex items-center gap-1.5 bg-status-success/10 px-2.5 py-1 rounded-full border border-status-success/20">
+<div class="w-1.5 h-1.5 rounded-full bg-status-success"></div>
+<span class="text-label-sm font-label-sm text-status-success">Siap</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/10 transition-colors">
+<td class="px-6 py-3 font-data-mono text-data-mono text-text-primary">E28011303000021B</td>
+<td class="px-6 py-3 font-body-sm text-body-sm text-text-primary">Sarung Bantal</td>
+<td class="px-6 py-3 font-data-mono text-data-mono text-text-secondary">08:14:23</td>
+<td class="px-6 py-3">
+<div class="inline-flex items-center gap-1.5 bg-status-success/10 px-2.5 py-1 rounded-full border border-status-success/20">
+<div class="w-1.5 h-1.5 rounded-full bg-status-success"></div>
+<span class="text-label-sm font-label-sm text-status-success">Siap</span>
+</div>
+</td>
+</tr>
+<tr class="bg-[rgba(224,32,32,0.05)] hover:bg-[rgba(224,32,32,0.1)] transition-colors border-l-4 border-l-status-error">
+<td class="px-6 py-3 font-data-mono text-data-mono text-text-primary">E28011303000022C</td>
+<td class="px-6 py-3 font-body-sm text-body-sm text-text-primary">Handuk Mandi</td>
+<td class="px-6 py-3 font-data-mono text-data-mono text-text-secondary">08:14:25</td>
+<td class="px-6 py-3">
+<div class="inline-flex items-center gap-1.5 bg-status-error/10 px-2.5 py-1 rounded-full border border-status-error/20">
+<div class="w-1.5 h-1.5 rounded-full bg-status-error"></div>
+<span class="text-label-sm font-label-sm text-status-error">Tidak Valid</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/10 transition-colors">
+<td class="px-6 py-3 font-data-mono text-data-mono text-text-primary">E28011303000023D</td>
+<td class="px-6 py-3 font-body-sm text-body-sm text-text-primary">Sprei Single Size</td>
+<td class="px-6 py-3 font-data-mono text-data-mono text-text-secondary">08:14:26</td>
+<td class="px-6 py-3">
+<div class="inline-flex items-center gap-1.5 bg-status-success/10 px-2.5 py-1 rounded-full border border-status-success/20">
+<div class="w-1.5 h-1.5 rounded-full bg-status-success"></div>
+<span class="text-label-sm font-label-sm text-status-success">Siap</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer Action Ref -->
+<div class="px-padding-card py-4 border-t border-glass-border bg-white/40 flex justify-end">
+<button class="rounded-full bg-tertiary hover:bg-tertiary/90 text-on-tertiary font-label-lg text-label-lg py-2.5 px-6 flex items-center justify-center gap-2 transition-all shadow-md">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">send</span>
+                                Proses Pengiriman
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Konfirmasi Mockup (Hidden by default, shown for reference) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center hidden" id="modal-mockup">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+<div class="glass-panel rounded-2xl p-8 max-w-sm w-full mx-4 relative z-10 flex flex-col items-center text-center shadow-2xl border border-white/60 bg-white/60">
+<div class="w-16 h-16 rounded-full bg-status-success/20 flex items-center justify-center mb-4 border-4 border-white shadow-sm">
+<span class="material-symbols-outlined text-[32px] text-status-success" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-text-primary mb-2">Pengiriman Diproses</h3>
+<p class="font-body-md text-body-md text-text-secondary mb-6">Manifest sedang diunggah ke Cloud dan tercatat di database lokal.</p>
+<div class="bg-white/50 rounded-lg p-4 w-full mb-6 border border-white/60 shadow-inner">
+<span class="block text-label-sm font-label-sm text-text-secondary mb-1">Kode Verifikasi</span>
+<span class="block font-data-mono text-data-mono text-lg text-primary tracking-widest font-bold">VRF-8X92KQ</span>
+</div>
+<button class="w-full rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg py-3 px-6 transition-all shadow-md">
+                Tutup &amp; Kembali
+            </button>
+</div>
+</div>
+</body></html>

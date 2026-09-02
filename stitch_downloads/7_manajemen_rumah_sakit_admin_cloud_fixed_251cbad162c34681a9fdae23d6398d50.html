@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manajemen Rumah Sakit - RFID Linen Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "status-error": "#E02020",
+                      "surface-container-low": "#f4f3f8",
+                      "tertiary-fixed-dim": "#ffb781",
+                      "background": "#faf9fe",
+                      "surface-container-highest": "#e3e2e7",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-container": "#ffc69e",
+                      "on-primary-fixed": "#001d34",
+                      "surface-bright": "#faf9fe",
+                      "surface": "#faf9fe",
+                      "on-surface-variant": "#414750",
+                      "on-primary-fixed-variant": "#004a79",
+                      "on-error-container": "#93000a",
+                      "primary": "#004673",
+                      "status-success": "#2DCA73",
+                      "on-secondary-fixed": "#00210d",
+                      "tertiary": "#6a3400",
+                      "outline-variant": "#c1c7d1",
+                      "surface-container": "#eeedf3",
+                      "primary-fixed": "#cfe4ff",
+                      "primary-fixed-dim": "#9acbff",
+                      "on-primary-container": "#b1d6ff",
+                      "secondary-fixed-dim": "#83d99b",
+                      "status-idle": "#8E8E93",
+                      "error": "#ba1a1a",
+                      "error-container": "#ffdad6",
+                      "text-primary": "#0A0A0A",
+                      "secondary-fixed": "#9ef6b5",
+                      "surface-dim": "#dad9df",
+                      "text-secondary": "#4A4A4A",
+                      "surface-variant": "#e3e2e7",
+                      "secondary": "#0b6d3a",
+                      "on-secondary-container": "#177340",
+                      "inverse-on-surface": "#f1f0f5",
+                      "tertiary-fixed": "#ffdcc5",
+                      "surface-tint": "#0c629c",
+                      "text-muted": "#6E6E73",
+                      "secondary-container": "#9ef6b5",
+                      "status-warning": "#F7B500",
+                      "primary-container": "#005e98",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#8c4802",
+                      "on-background": "#1a1b1f",
+                      "on-error": "#ffffff",
+                      "outline": "#717881",
+                      "on-surface": "#1a1b1f",
+                      "on-tertiary-fixed-variant": "#703800",
+                      "surface-container-high": "#e9e7ed",
+                      "on-secondary-fixed-variant": "#005229",
+                      "inverse-surface": "#2f3034",
+                      "inverse-primary": "#9acbff",
+                      "glass-border": "rgba(255, 255, 255, 0.3)",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed": "#301400",
+                      "on-primary": "#ffffff",
+                      "glass-bg": "rgba(255, 255, 255, 0.25)"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-page": "32px",
+                      "padding-card": "24px",
+                      "header-height": "64px",
+                      "stack-sm": "8px",
+                      "stack-lg": "24px",
+                      "stack-md": "16px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Poppins"
+                      ],
+                      "label-lg": [
+                              "Poppins"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Poppins"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "18px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "22px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYFVa85n61FwghcNF14Q-BqRFLi6lnua1jvjvoVw33Z-CsD_L14gKgb8BO_b4icIb5bSGH2zSyXUaKkBkRA5Vu6RPLwaTAnNY5c_9vRsB-ckx0ZWDFVJ1UoM2zBDfw5FbV7RizNnP9D7q8e9A_VclQFcJ1xR8WicmOhBvhVKR8XNrkG8tleHihjMYkemHNN4a8B7YZKZ9cJx1slqa6LoBtvYWQ8e48u6ozFge8UhYQ9y8GuomrxxvQqZUP1oChiujR1Q');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .glass-panel {
+            background-color: theme("colors.glass-bg");
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid theme("colors.glass-border");
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .ambient-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        /* Modal Utilities */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px)
+        }
+    </style>
+</head>
+<body class="text-text-primary antialiased font-body-md min-h-screen">
+<!-- Top Nav Bar Shell (Shared Component) -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-3 w-[calc(100%-64px)] max-w-7xl mx-auto rounded-full mt-4 bg-white/10 border border-white/10 shadow-md backdrop-blur-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-glass-border">
+<img alt="Company Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmIRjJRjRIkSGMR2J70-2go9Kt0vT73yekk0vnYpmgFmr-wGEdBO599UFXoE-UVPOvb_ND3N2VS2EQOfymh4lkAWIDRUirdFDbwcX-w0fbHVANYl_9rRw_UX9ty4SGGp6BtqDIWNIPYgyHV8Y5gDh9aazBWhL5UlFtD67OaFjEKtwosgEYElGEdUL739OQ5LfYU0YlFd_xEODxPGmzNgpfOR9P29Q-BJ27STgONRWT_PBwPF0BK_9gz9TLVDrJx65-Jw"/>
+</div>
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed">RFID Linen Pro</span>
+</div>
+<div class="hidden md:flex items-center gap-2">
+<a class="text-white/80 hover:text-white px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10 transition-all duration-300" href="#">Dashboard</a>
+<a class="text-white/80 hover:text-white px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10 transition-all duration-300" href="#">Pendaftaran Linen</a>
+<a class="text-white/80 hover:text-white px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10 transition-all duration-300" href="#">Cek Info Linen</a>
+<a class="text-white/80 hover:text-white px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10 transition-all duration-300" href="#">Pengiriman</a>
+<!-- Active Dropdown Mockup (Manajemen Data) -->
+<div class="relative group">
+<button class="bg-[#00E5FF] text-on-surface rounded-full px-4 py-1.5 flex items-center gap-1 font-label-md text-label-md shadow-sm">
+                     Manajemen Data <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+</button>
+</div>
+<div class="relative group">
+<button class="text-white/80 hover:text-white px-4 py-1.5 transition-colors font-label-md text-label-md rounded-full hover:bg-white/10 transition-all duration-300 flex items-center gap-1">
+                     Admin Cloud <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full border border-white/30 backdrop-blur-sm shadow-sm">
+<div class="w-2 h-2 rounded-full bg-status-error animate-pulse"></div>
+<span class="font-label-sm text-label-sm text-text-primary hidden sm:inline-block">Reader OFF</span>
+</div>
+<div class="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full border border-white/30 backdrop-blur-sm shadow-sm">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="font-label-sm text-label-sm text-text-primary hidden sm:inline-block">Cloud DB ON</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="max-w-7xl mx-auto px-margin-page pt-[104px] pb-margin-page relative z-10">
+<!-- Main Panel -->
+<div class="glass-panel rounded-2xl p-padding-card relative overflow-hidden">
+<!-- Ambient Glow -->
+<div class="ambient-glow -top-10 -left-10"></div>
+<div class="flex justify-between items-start mb-stack-lg relative z-10 border-b border-glass-border pb-4">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center border border-white/20 shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">apartment</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-text-primary mb-1">Manajemen Rumah Sakit</h1>
+<p class="font-body-sm text-body-sm text-text-muted">Data disimpan langsung ke Cloud dan disinkronkan ke lokal.</p>
+</div>
+</div>
+<button class="bg-[#00E5FF] text-on-surface font-label-md text-label-md rounded-full px-5 py-2.5 flex items-center gap-2 hover:bg-[#00E5FF]/80 transition-colors shadow-sm font-headline-md">
+<span class="material-symbols-outlined">add</span> Tambah Data
+                </button>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto relative z-10 rounded-lg border border-glass-border bg-white/5">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-white/40 backdrop-blur-md z-20">
+<tr class="border-b border-glass-border text-on-surface-variant">
+<th class="py-3 px-4 font-label-md text-label-md">UUID RS</th>
+<th class="py-3 px-4 font-label-md text-label-md">Kode RS</th>
+<th class="py-3 px-4 font-label-md text-label-md">Nama RS</th>
+<th class="py-3 px-4 font-label-md text-label-md">Alamat</th>
+<th class="py-3 px-4 font-label-md text-label-md">Kontak</th>
+<th class="py-3 px-4 font-label-md text-label-md">Email</th>
+<th class="py-3 px-4 font-label-md text-label-md text-center">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-glass-border/50">
+<!-- Record 1 -->
+<tr class="hover:bg-white/10 transition-colors group">
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-secondary">b5e3-4f12</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-primary">RS001</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-primary font-medium">RS Aminah</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-secondary">Jl. Kesehatan No.1</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">0812-3456-7890</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">admin@rsaminah.com</td>
+<td class="py-3 px-4 text-center">
+<div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded-full bg-white/40 border border-glass-border flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-white/40 border border-glass-border flex items-center justify-center text-status-error hover:bg-status-error hover:text-white transition-colors" title="Hapus">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Record 2 -->
+<tr class="hover:bg-white/10 transition-colors group">
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-secondary">a1c4-9d88</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-primary">RS002</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-primary font-medium">RS Sehat Sentosa</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-secondary">Jl. Merdeka No.45</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">0811-2233-4455</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">info@sehatsentosa.id</td>
+<td class="py-3 px-4 text-center">
+<div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded-full bg-white/40 border border-glass-border flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-white/40 border border-glass-border flex items-center justify-center text-status-error hover:bg-status-error hover:text-white transition-colors" title="Hapus">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Record 3 -->
+<tr class="hover:bg-white/10 transition-colors group">
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-secondary">f7b2-1a39</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-primary">RS003</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-primary font-medium">RS Coba Coba</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-secondary">Jl. Testing No.99</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">0899-8877-6655</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">test@rscobacoba.net</td>
+<td class="py-3 px-4 text-center">
+<div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded-full bg-white/40 border border-glass-border flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-white/40 border border-glass-border flex items-center justify-center text-status-error hover:bg-status-error hover:text-white transition-colors" title="Hapus">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Record 4 -->
+<tr class="hover:bg-white/10 transition-colors group">
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-secondary">c8d4-2e55</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-text-primary">RS004</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-primary font-medium">Waras</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-secondary">Jl. Waras No.22</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">0877-1122-3344</td>
+<td class="py-3 px-4 font-body-sm text-body-sm text-text-secondary">halo@waras.co.id</td>
+<td class="py-3 px-4 text-center">
+<div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded-full bg-white/40 border border-glass-border flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-white/40 border border-glass-border flex items-center justify-center text-status-error hover:bg-status-error hover:text-white transition-colors" title="Hapus">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-4 flex justify-end text-text-muted font-body-sm text-body-sm">
+                Showing 4 of 4 entries
+            </div>
+</div>
+<!-- Empty State Mockup (Hidden by default, shown for layout demonstration) -->
+<div class="glass-panel rounded-2xl p-12 mt-8 flex flex-col items-center justify-center text-center opacity-50 border-dashed">
+<div class="w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">domain</span>
+</div>
+<p class="font-headline-md text-headline-md text-text-secondary">Belum ada data Rumah Sakit.</p>
+<p class="font-body-sm text-body-sm text-text-muted mt-2">Klik tombol "+ Tambah Data" untuk mulai menambahkan.</p>
+</div>
+</main>
+<!-- Modal Mocks (Hidden visually, structural reference) -->
+<!-- Form Modal -->
+<div class="fixed inset-0 modal-overlay z-[100] hidden items-center justify-center">
+<div class="glass-panel rounded-2xl w-full max-w-lg p-padding-card">
+<h2 class="font-headline-md text-headline-md text-text-primary mb-6">Tambah Rumah Sakit</h2>
+<div class="space-y-4">
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1">Kode RS</label>
+<input class="w-full bg-white/10 border border-glass-border rounded-lg px-3 py-2 text-text-primary focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors font-body-md text-body-md" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1">Nama RS</label>
+<input class="w-full bg-white/10 border border-glass-border rounded-lg px-3 py-2 text-text-primary focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors font-body-md text-body-md" type="text"/>
+</div>
+<!-- Additional fields omitted for brevity but follow same pattern -->
+</div>
+<div class="mt-6 flex justify-end gap-3 pt-4 border-t border-glass-border">
+<button class="px-4 py-2 rounded-full font-label-md text-label-md text-text-secondary hover:bg-white/10 transition-colors">Batal</button>
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary/90 transition-colors">Simpan</button>
+</div>
+</div>
+</div>
+<!-- Delete Confirmation Modal -->
+<div class="fixed inset-0 modal-overlay z-[100] hidden items-center justify-center">
+<div class="glass-panel rounded-2xl w-full max-w-md p-padding-card text-center">
+<div class="w-12 h-12 rounded-full bg-status-warning/20 text-status-warning flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-2xl">warning</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-text-primary mb-2">Hapus data Rumah Sakit ini?</h2>
+<p class="font-body-sm text-body-sm text-text-muted mb-6">Tindakan ini tidak dapat dibatalkan.</p>
+<div class="flex justify-center gap-3">
+<button class="px-6 py-2 rounded-full border border-glass-border font-label-md text-label-md text-text-secondary hover:bg-white/10 transition-colors">Batal</button>
+<button class="px-6 py-2 rounded-full bg-status-error text-white font-label-md text-label-md hover:bg-status-error/90 transition-colors">Hapus</button>
+</div>
+</div>
+</div>
+<!-- Error Modal -->
+<div class="fixed inset-0 modal-overlay z-[100] hidden items-center justify-center">
+<div class="glass-panel rounded-2xl w-full max-w-sm p-padding-card text-center border-status-error/50">
+<div class="w-12 h-12 rounded-full bg-status-error/20 text-status-error flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-2xl">error</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-text-primary mb-2">Tidak dapat menghapus.</h2>
+<p class="font-body-sm text-body-sm text-text-muted mb-6">Data ini memiliki relasi history transaksi yang tidak boleh dihapus.</p>
+<button class="w-full px-6 py-2 rounded-full border border-glass-border font-label-md text-label-md text-text-secondary hover:bg-white/10 transition-colors">Tutup</button>
+</div>
+</div>
+</body></html>
