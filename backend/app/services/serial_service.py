@@ -163,6 +163,23 @@ class SerialService:
             self._current_port = port
             self.serial_connected = True
             logger.info(f"Serial port {port} opened successfully (115200 8N1)")
+
+            # Broadcast connection success notification to WS clients
+            try:
+                from app.services.websocket_manager import ws_manager
+                from app.services.sync_service import sync_service
+                await ws_manager.broadcast({
+                    "type": "serial_connected_info",
+                    "port": port,
+                    "message": f"Sensor berhasil terhubung di {port}",
+                })
+                await ws_manager.broadcast_connection_state(
+                    serial_connected=True,
+                    cloud_online=sync_service.cloud_online,
+                )
+            except Exception as broadcast_err:
+                logger.warning(f"Failed to broadcast serial_connected_info: {broadcast_err}")
+
             return True
         except Exception as e:
             self.serial_connected = False

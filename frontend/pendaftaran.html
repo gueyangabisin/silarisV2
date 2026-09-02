@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Pendaftaran Linen - RFID Linen Pro</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#004673",
+                        "primary-container": "#0077BF",
+                        "on-primary": "#ffffff",
+                        "status-error": "#E02020",
+                        "status-success": "#2DCA73",
+                        "status-warning": "#F7B500",
+                        "status-idle": "#8E8E93",
+                        "background": "#faf9fe",
+                        "surface": "#faf9fe",
+                        "on-surface": "#1a1b1f",
+                        "on-surface-variant": "#414750",
+                        "glass-bg": "rgba(255, 255, 255, 0.25)",
+                        "glass-border": "rgba(255, 255, 255, 0.3)",
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "headline-md": ["Poppins"],
+                        "label-md": ["Inter"],
+                        "data-mono": ["Inter"],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+    <!-- Fixed Background Image -->
+    <div class="fixed inset-0 z-[-1] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBxVxpUIDZLWfJHCXhDShJhHAOE7MPa07HGq_C3t77o4LEo_lzVbnXHNoDrlZyNDBLGdV9aDv-PK3yck2T2K5TDFrTgbQzntSjjeuuf90kQE_HTmxnObY6l6c0Wk3e6NpKTK7bf-RRIN85DEpplSWOEqqRAusY7odMbTQ2i-iBALVJ264SUQ1WyfRWXS95xfzzrBfSQclA-Bgk45YXSqkG9UjjTymJ2bpUePHukxa3xOsXdGxFdCNaNvUnkVC_7TuKmw')"></div>
+    <div class="fixed inset-0 z-[-1] bg-black/20"></div>
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center max-w-7xl mx-auto px-6 h-[64px] bg-glass-bg backdrop-blur-[24px] rounded-full mt-4 border border-glass-border shadow-[0_4px_12px_rgba(0,0,0,0.1)] text-primary">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_laundry_service</span>
+            </div>
+            <span class="font-headline-md text-headline-md font-bold">RFID Linen Pro</span>
+        </div>
+        <div class="hidden md:flex gap-1 font-label-lg text-label-lg">
+            <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="index.html">Dashboard</a>
+            <a class="bg-primary text-on-primary rounded-full px-4 py-1.5 flex items-center gap-1 font-semibold" href="pendaftaran.html">Pendaftaran Linen</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="cek_info.html">Cek Info Linen</a>
+            <div class="relative group">
+                <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 flex items-center gap-1 hover:bg-glass-border rounded-full" href="kirim_barang.html">
+                    Pengiriman <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-48 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="kirim_barang.html">Kirim Barang</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="antrean_bermasalah.html">Antrean Bermasalah</a>
+                </div>
+            </div>
+            <div class="relative group">
+                <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 flex items-center gap-1 hover:bg-glass-border rounded-full" href="manajemen_linen.html">
+                    Manajemen Data <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-48 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_linen.html">Linen</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_kategori.html">Kategori Linen</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_nama.html">Nama Linen</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div id="header-reader-badge" class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+                <span class="w-2 h-2 rounded-full bg-status-error"></span>
+                <span class="text-label-sm font-label-sm font-bold text-on-surface">Reader OFF</span>
+            </div>
+            <div id="header-cloud-badge" class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+                <span class="w-2 h-2 rounded-full bg-status-error"></span>
+                <span class="text-label-sm font-label-sm font-bold text-on-surface">Cloud DB OFF</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Canvas -->
+    <main class="pt-[104px] pb-16 px-6 max-w-7xl mx-auto w-full flex flex-col gap-6">
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Panel Kiri: Pengaturan Default Pendaftaran -->
+            <div class="w-full md:w-1/3 glass-panel rounded-2xl p-6 flex flex-col gap-4 border border-glass-border h-fit">
+                <h2 class="font-headline-md font-bold text-primary flex items-center gap-2">
+                    <span class="material-symbols-outlined">app_registration</span>
+                    Pendaftaran Item Baru
+                </h2>
+                <p class="font-body-md text-on-surface-variant">Pilih Port Sensor, Kategori, dan Nama Linen yang akan diterapkan ke tag RFID terdeteksi.</p>
+
+                <!-- Issue C: Dropdown Port Sensor -->
+                <div class="flex flex-col gap-1">
+                    <div class="flex justify-between items-center">
+                        <label class="font-label-md font-semibold text-on-surface">Port Sensor RFID</label>
+                        <button onclick="loadPortSelector('select-port-sensor')" class="text-primary text-label-sm hover:underline flex items-center gap-0.5">
+                            <span class="material-symbols-outlined text-[14px]">refresh</span> Refresh
+                        </button>
+                    </div>
+                    <select id="select-port-sensor" onchange="switchPort(this.value)" class="bg-white/60 border border-glass-border rounded-xl px-4 py-2 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option value="">-- Memuat Port... --</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-md font-semibold text-on-surface">1. Kategori Linen</label>
+                    <select id="select-kategori" onchange="onKategoriChange()" class="bg-white/60 border border-glass-border rounded-xl px-4 py-2 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option value="">-- Pilih Kategori --</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-md font-semibold text-on-surface">2. Nama Linen</label>
+                    <select id="select-nama" class="bg-white/60 border border-glass-border rounded-xl px-4 py-2 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option value="">-- Pilih Nama Linen --</option>
+                    </select>
+                </div>
+
+                <!-- Tombol Kontrol Scanning -->
+                <div class="mt-4 flex flex-col gap-2">
+                    <button id="btn-toggle-scan" onclick="toggleScanning()" class="w-full bg-primary hover:bg-primary/90 text-on-primary font-label-lg py-3 rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                        <span id="scan-icon" class="material-symbols-outlined">sensors</span>
+                        <span id="scan-btn-text">Mulai Scanning</span>
+                    </button>
+                    <button onclick="registerAllPending()" class="w-full bg-status-success hover:bg-status-success/90 text-white font-label-lg py-2.5 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">done_all</span>
+                        Daftarkan Semua Tag Valid
+                    </button>
+                </div>
+            </div>
+
+            <!-- Panel Kanan: Live Scan Table -->
+            <div class="w-full md:w-2/3 glass-panel rounded-2xl border border-glass-border shadow-sm overflow-hidden flex flex-col">
+                <div class="p-6 border-b border-glass-border flex justify-between items-center bg-white/30">
+                    <div class="flex items-center gap-3">
+                        <h2 class="font-headline-md font-bold text-primary">Tag Terdeteksi (Live)</h2>
+                        <span id="scan-status-pill" class="px-3 py-1 bg-status-idle/20 text-status-idle font-bold rounded-full text-label-sm flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-status-idle"></span>
+                            Idle
+                        </span>
+                    </div>
+                    <span id="total-scanned-count" class="font-data-mono text-label-md text-on-surface-variant font-bold">0 Tag</span>
+                </div>
+
+                <div class="overflow-x-auto max-h-[520px] overflow-y-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="sticky top-0 bg-white/80 backdrop-blur-md z-10 text-on-surface-variant font-label-md border-b border-glass-border">
+                            <tr>
+                                <th class="py-3 px-6">EPC Tag</th>
+                                <th class="py-3 px-6">RSSI</th>
+                                <th class="py-3 px-6">Status Pendaftaran</th>
+                                <th class="py-3 px-6 text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scan-table-body">
+                            <tr id="empty-scan-row">
+                                <td colspan="4" class="py-12 text-center text-on-surface-variant">
+                                    <span class="material-symbols-outlined text-[36px] text-status-idle block mb-2">sensors_off</span>
+                                    Scan belum aktif. Klik 'Mulai Scanning' untuk mulai membaca tag RFID.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="common.js"></script>
+    <script>
+        let liveScannedTags = new Map();
+        let isScanActiveLocal = false;
+
+        async function initPendaftaranPage() {
+            await loadPortSelector("select-port-sensor");
+            await loadKategoriOptions();
+            subscribeWS(handleWSEvent);
+        }
+
+        async function loadKategoriOptions() {
+            try {
+                const resp = await fetch(`${API_BASE}/api/kategori`);
+                const items = await resp.json(); // Array polos!
+                const select = document.getElementById("select-kategori");
+                select.innerHTML = `<option value="">-- Pilih Kategori --</option>` +
+                    items.map(c => `<option value="${c.kategori_id}">${c.nama}</option>`).join("");
+            } catch (e) {
+                console.error("Error loading categories:", e);
+            }
+        }
+
+        async function onKategoriChange() {
+            const katId = document.getElementById("select-kategori").value;
+            const namaSelect = document.getElementById("select-nama");
+            if (!katId) {
+                namaSelect.innerHTML = `<option value="">-- Pilih Nama Linen --</option>`;
+                return;
+            }
+            try {
+                const resp = await fetch(`${API_BASE}/api/nama-linen?kategori_id=${katId}`);
+                const names = await resp.json(); // Array polos!
+                namaSelect.innerHTML = `<option value="">-- Pilih Nama Linen --</option>` +
+                    names.map(n => `<option value="${n.nama_id}">${n.nama_linen}</option>`).join("");
+            } catch (e) {
+                console.error("Error loading nama linen:", e);
+            }
+        }
+
+        function toggleScanning() {
+            const selectedPort = document.getElementById("select-port-sensor").value;
+            if (isScanActiveLocal) {
+                sendWSCommand({ type: "stop_inventory" });
+            } else {
+                sendWSCommand({ type: "start_inventory", port: selectedPort });
+            }
+        }
+
+        function updateScanControlsUI(isActive) {
+            isScanActiveLocal = isActive;
+            const btn = document.getElementById("btn-toggle-scan");
+            const btnText = document.getElementById("scan-btn-text");
+            const btnIcon = document.getElementById("scan-icon");
+            const pill = document.getElementById("scan-status-pill");
+
+            if (isActive) {
+                btn.className = "w-full bg-status-error hover:bg-status-error/90 text-white font-label-lg py-3 rounded-xl shadow-md transition-all flex items-center justify-center gap-2";
+                btnText.innerText = "Hentikan Scanning";
+                btnIcon.innerText = "stop_circle";
+                pill.className = "px-3 py-1 bg-status-warning/20 text-status-warning font-bold rounded-full text-label-sm flex items-center gap-1.5 animate-pulse";
+                pill.innerHTML = `<span class="w-2 h-2 rounded-full bg-status-warning animate-ping"></span>Scanning...`;
+            } else {
+                btn.className = "w-full bg-primary hover:bg-primary/90 text-on-primary font-label-lg py-3 rounded-xl shadow-md transition-all flex items-center justify-center gap-2";
+                btnText.innerText = "Mulai Scanning";
+                btnIcon.innerText = "sensors";
+                pill.className = "px-3 py-1 bg-status-idle/20 text-status-idle font-bold rounded-full text-label-sm flex items-center gap-1.5";
+                pill.innerHTML = `<span class="w-2 h-2 rounded-full bg-status-idle"></span>Idle`;
+            }
+        }
+
+        function handleWSEvent(data) {
+            if (data.type === "init_state" || data.type === "scan_state_changed") {
+                updateScanControlsUI(data.is_scanning_active);
+            } else if (data.type === "epc_detected") {
+                processEPCDetected(data.epc, data.rssi);
+            }
+        }
+
+        async function processEPCDetected(epc, rssi) {
+            if (liveScannedTags.has(epc)) {
+                const existing = liveScannedTags.get(epc);
+                existing.rssi = rssi;
+                const rssiEl = document.getElementById(`rssi-${epc}`);
+                if (rssiEl) rssiEl.innerText = `-${rssi} dBm`;
+                return;
+            }
+
+            const emptyRow = document.getElementById("empty-scan-row");
+            if (emptyRow) emptyRow.remove();
+
+            const item = {
+                epc: epc,
+                rssi: rssi,
+                status: "checking",
+                isDuplicate: false,
+            };
+            liveScannedTags.set(epc, item);
+            renderTagRow(item);
+            updateScannedCount();
+
+            try {
+                const resp = await fetch(`${API_BASE}/api/linen/${epc}`);
+                if (resp.status === 200) {
+                    item.status = "duplicate";
+                    item.isDuplicate = true;
+                } else {
+                    item.status = "pending";
+                    item.isDuplicate = false;
+                }
+            } catch (e) {
+                item.status = "pending";
+            }
+            renderTagRow(item);
+        }
+
+        function renderTagRow(item) {
+            const tbody = document.getElementById("scan-table-body");
+            let row = document.getElementById(`row-${item.epc}`);
+
+            let badgeHtml = "";
+            let actionBtnHtml = "";
+
+            if (item.status === "checking") {
+                badgeHtml = `<span class="inline-block px-3 py-1 bg-white/50 text-on-surface-variant rounded-full text-label-sm animate-pulse">Checking...</span>`;
+                actionBtnHtml = `<span class="text-on-surface-variant text-label-sm">Memeriksa...</span>`;
+            } else if (item.status === "duplicate") {
+                badgeHtml = `<span class="inline-block px-3 py-1 bg-status-error/20 text-status-error border border-status-error/30 font-bold rounded-full text-label-sm">Tag Sudah Terdaftar</span>`;
+                actionBtnHtml = `<button disabled class="opacity-40 bg-white/50 text-on-surface-variant font-label-md px-3 py-1 rounded-full cursor-not-allowed">Terdaftar</button>`;
+            } else if (item.status === "pending") {
+                badgeHtml = `<span class="inline-block px-3 py-1 bg-status-warning/20 text-status-warning border border-status-warning/30 font-bold rounded-full text-label-sm">Menunggu</span>`;
+                actionBtnHtml = `<button onclick="registerSingleTag('${item.epc}')" class="bg-primary hover:bg-primary/90 text-on-primary font-label-md px-4 py-1 rounded-full shadow-sm">Daftarkan</button>`;
+            } else if (item.status === "registered") {
+                badgeHtml = `<span class="inline-block px-3 py-1 bg-status-success/20 text-status-success border border-status-success/30 font-bold rounded-full text-label-sm">Terdaftar ✓</span>`;
+                actionBtnHtml = `<button disabled class="opacity-40 bg-status-success/20 text-status-success font-label-md px-3 py-1 rounded-full cursor-not-allowed font-bold">Sukses</button>`;
+            }
+
+            const rowBg = item.isDuplicate ? "bg-status-error/10" : "";
+
+            if (!row) {
+                row = document.createElement("tr");
+                row.id = `row-${item.epc}`;
+                row.className = `border-b border-glass-border/50 hover:bg-white/20 transition-colors ${rowBg}`;
+                tbody.prepend(row);
+            } else {
+                row.className = `border-b border-glass-border/50 hover:bg-white/20 transition-colors ${rowBg}`;
+            }
+
+            row.innerHTML = `
+                <td class="py-3 px-6 font-data-mono font-bold text-primary">${item.epc}</td>
+                <td id="rssi-${item.epc}" class="py-3 px-6 font-data-mono text-on-surface-variant">-${item.rssi} dBm</td>
+                <td class="py-3 px-6">${badgeHtml}</td>
+                <td class="py-3 px-6 text-right">${actionBtnHtml}</td>
+            `;
+        }
+
+        function updateScannedCount() {
+            document.getElementById("total-scanned-count").innerText = `${liveScannedTags.size} Tag Read`;
+        }
+
+        async function registerSingleTag(epc) {
+            const katId = document.getElementById("select-kategori").value;
+            const namaId = document.getElementById("select-nama").value;
+
+            if (!katId || !namaId) {
+                showErrorToast("Pilih Kategori dan Nama Linen terlebih dahulu di panel kiri!");
+                return;
+            }
+
+            try {
+                const resp = await fetch(`${API_BASE}/api/linen`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        epc: epc,
+                        kategori_id: parseInt(katId),
+                        nama_id: parseInt(namaId)
+                    })
+                });
+
+                const res = await resp.json();
+                if (!resp.ok) {
+                    showErrorModal("Gagal Mendaftarkan Linen", res.detail || "Terjadi kesalahan.");
+                    return;
+                }
+
+                showSuccessToast(`EPC ${epc} berhasil didaftarkan!`);
+                const item = liveScannedTags.get(epc);
+                if (item) {
+                    item.status = "registered";
+                    renderTagRow(item);
+                }
+            } catch (e) {
+                showErrorModal("Error", "Gagal menghubungi server.");
+            }
+        }
+
+        async function registerAllPending() {
+            const katId = document.getElementById("select-kategori").value;
+            const namaId = document.getElementById("select-nama").value;
+
+            if (!katId || !namaId) {
+                showErrorToast("Pilih Kategori dan Nama Linen terlebih dahulu di panel kiri!");
+                return;
+            }
+
+            const pendingItems = Array.from(liveScannedTags.values()).filter(i => i.status === "pending");
+            if (pendingItems.length === 0) {
+                showToast("Tidak ada tag berstatus 'Menunggu' untuk didaftarkan.", "warning");
+                return;
+            }
+
+            let successCount = 0;
+            for (const item of pendingItems) {
+                try {
+                    const resp = await fetch(`${API_BASE}/api/linen`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            epc: item.epc,
+                            kategori_id: parseInt(katId),
+                            nama_id: parseInt(namaId)
+                        })
+                    });
+                    if (resp.ok) {
+                        item.status = "registered";
+                        renderTagRow(item);
+                        successCount++;
+                    }
+                } catch (e) {}
+            }
+
+            showSuccessToast(`Berhasil mendaftarkan ${successCount} item linen!`);
+        }
+
+        document.addEventListener("DOMContentLoaded", initPendaftaranPage);
+    </script>
+</body>
+</html>

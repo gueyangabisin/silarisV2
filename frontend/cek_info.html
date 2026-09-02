@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Cek Info Linen - RFID Linen Pro</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#004673",
+                        "primary-container": "#0077BF",
+                        "on-primary": "#ffffff",
+                        "status-error": "#E02020",
+                        "status-success": "#2DCA73",
+                        "status-warning": "#F7B500",
+                        "status-idle": "#8E8E93",
+                        "background": "#faf9fe",
+                        "surface": "#faf9fe",
+                        "on-surface": "#1a1b1f",
+                        "on-surface-variant": "#414750",
+                        "glass-bg": "rgba(255, 255, 255, 0.25)",
+                        "glass-border": "rgba(255, 255, 255, 0.3)",
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "headline-md": ["Poppins"],
+                        "label-md": ["Inter"],
+                        "data-mono": ["Inter"],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+    <!-- Fixed Background Image -->
+    <div class="fixed inset-0 z-[-1] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBxVxpUIDZLWfJHCXhDShJhHAOE7MPa07HGq_C3t77o4LEo_lzVbnXHNoDrlZyNDBLGdV9aDv-PK3yck2T2K5TDFrTgbQzntSjjeuuf90kQE_HTmxnObY6l6c0Wk3e6NpKTK7bf-RRIN85DEpplSWOEqqRAusY7odMbTQ2i-iBALVJ264SUQ1WyfRWXS95xfzzrBfSQclA-Bgk45YXSqkG9UjjTymJ2bpUePHukxa3xOsXdGxFdCNaNvUnkVC_7TuKmw')"></div>
+    <div class="fixed inset-0 z-[-1] bg-black/20"></div>
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center max-w-7xl mx-auto px-6 h-[64px] bg-glass-bg backdrop-blur-[24px] rounded-full mt-4 border border-glass-border shadow-[0_4px_12px_rgba(0,0,0,0.1)] text-primary">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_laundry_service</span>
+            </div>
+            <span class="font-headline-md text-headline-md font-bold">RFID Linen Pro</span>
+        </div>
+        <div class="hidden md:flex gap-1 font-label-lg text-label-lg">
+            <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="index.html">Dashboard</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="pendaftaran.html">Pendaftaran Linen</a>
+            <a class="bg-primary text-on-primary rounded-full px-4 py-1.5 flex items-center gap-1 font-semibold" href="cek_info.html">Cek Info Linen</a>
+            <div class="relative group">
+                <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 flex items-center gap-1 hover:bg-glass-border rounded-full" href="kirim_barang.html">
+                    Pengiriman <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-48 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="kirim_barang.html">Kirim Barang</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="antrean_bermasalah.html">Antrean Bermasalah</a>
+                </div>
+            </div>
+            <div class="relative group">
+                <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 flex items-center gap-1 hover:bg-glass-border rounded-full" href="manajemen_linen.html">
+                    Manajemen Data <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-48 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_linen.html">Linen</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_kategori.html">Kategori Linen</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_nama.html">Nama Linen</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div id="header-reader-badge" class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+                <span class="w-2 h-2 rounded-full bg-status-error"></span>
+                <span class="text-label-sm font-label-sm font-bold text-on-surface">Reader OFF</span>
+            </div>
+            <div id="header-cloud-badge" class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+                <span class="w-2 h-2 rounded-full bg-status-error"></span>
+                <span class="text-label-sm font-label-sm font-bold text-on-surface">Cloud DB OFF</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Canvas -->
+    <main class="pt-[104px] pb-16 px-6 max-w-7xl mx-auto w-full flex flex-col gap-6">
+        <!-- Control Header & Search Bar -->
+        <div class="glass-panel rounded-2xl p-6 border border-glass-border shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="font-headline-lg text-headline-lg font-bold text-primary">Pengecekan Detail Item</h1>
+                <p class="font-body-md text-on-surface-variant">Scan tag RFID atau ketik EPC manual untuk melihat informasi detail linen.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+                <!-- Issue C: Port Sensor selector -->
+                <select id="select-port-sensor" onchange="switchPort(this.value)" class="bg-white/60 border border-glass-border rounded-full px-4 py-2 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/50 w-full sm:w-auto">
+                    <option value="">-- Memuat Port... --</option>
+                </select>
+                <div class="relative flex-1 md:w-72 w-full">
+                    <input id="input-manual-epc" type="text" placeholder="Ketik EPC Manual..." onkeyup="if(event.key==='Enter') lookupManualEPC()" class="w-full pl-4 pr-10 py-2.5 bg-white/60 border border-glass-border rounded-full text-body-md font-data-mono focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                    <button onclick="lookupManualEPC()" class="absolute right-2 top-1.5 p-1 text-primary hover:bg-primary/10 rounded-full">
+                        <span class="material-symbols-outlined text-[20px]">search</span>
+                    </button>
+                </div>
+                <button id="btn-toggle-scan" onclick="toggleScanning()" class="bg-primary hover:bg-primary/90 text-on-primary font-label-lg px-6 py-2.5 rounded-full shadow-md flex items-center gap-2 whitespace-nowrap w-full sm:w-auto justify-center">
+                    <span id="scan-icon" class="material-symbols-outlined">sensors</span>
+                    <span id="scan-btn-text">Mulai Scan</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Result Display Card (State A / B / C) -->
+        <div id="result-card-container" class="glass-panel rounded-2xl p-8 border border-glass-border shadow-sm">
+            <!-- STATE A: IDLE / WAITING -->
+            <div id="state-idle" class="flex flex-col items-center justify-center py-12 text-center text-on-surface-variant">
+                <span class="material-symbols-outlined text-[64px] text-status-idle mb-3">qr_code_scanner</span>
+                <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-1">Siap Pengecekan Item</h3>
+                <p class="font-body-md max-w-md">Aktifkan tombol scan di atas atau masukkan kode EPC manual untuk melihat informasi detail linen secara instant.</p>
+            </div>
+
+            <!-- STATE B: FOUND (200) -->
+            <div id="state-found" class="flex flex-col gap-6 hidden">
+                <div class="flex justify-between items-start border-b border-glass-border pb-4">
+                    <div>
+                        <span class="font-label-sm font-bold text-status-success uppercase tracking-wider block mb-1">Item Terdaftar</span>
+                        <h2 id="found-nama-linen" class="font-headline-lg font-bold text-primary">Sprei Standard A</h2>
+                    </div>
+                    <span id="found-status-badge" class="px-4 py-1.5 bg-status-success/20 text-status-success border border-status-success/30 font-bold rounded-full text-label-md">
+                        Tersedia
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white/40 p-4 rounded-xl border border-glass-border">
+                        <span class="font-label-sm text-on-surface-variant block mb-1">EPC Tag Identifier</span>
+                        <span id="found-epc" class="font-data-mono font-bold text-primary text-[16px]">300833B2DDD9014000000001</span>
+                    </div>
+                    <div class="bg-white/40 p-4 rounded-xl border border-glass-border">
+                        <span class="font-label-sm text-on-surface-variant block mb-1">Kategori Linen</span>
+                        <span id="found-kategori" class="font-body-md font-semibold text-on-surface text-[16px]">Sprei</span>
+                    </div>
+                    <div id="found-rs-container" class="bg-white/40 p-4 rounded-xl border border-glass-border hidden">
+                        <span class="font-label-sm text-on-surface-variant block mb-1">Tujuan Pengiriman</span>
+                        <span id="found-nama-rs" class="font-body-md font-semibold text-primary-container text-[16px]">RS Sentra Medika</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATE C: NOT FOUND (404) -->
+            <div id="state-not-found" class="flex flex-col items-center justify-center py-8 text-center hidden">
+                <div class="w-16 h-16 rounded-full bg-status-error/10 text-status-error flex items-center justify-center mb-3">
+                    <span class="material-symbols-outlined text-[36px]">error</span>
+                </div>
+                <span id="not-found-epc" class="font-data-mono font-bold text-status-error mb-1">300833B2DDD9014000009999</span>
+                <h3 class="font-headline-md font-bold text-status-error mb-1">Item Belum Terdaftar</h3>
+                <p id="not-found-detail" class="font-body-md text-on-surface-variant max-w-md">Tag RFID ini belum terdaftar di database sistem lokal.</p>
+            </div>
+        </div>
+
+        <!-- Tabel Riwayat Pengecekan Sesi Ini -->
+        <div class="glass-panel rounded-2xl border border-glass-border shadow-sm overflow-hidden flex flex-col">
+            <div class="p-6 border-b border-glass-border flex justify-between items-center bg-white/30">
+                <h2 class="font-headline-md font-bold text-primary">Riwayat Pengecekan (Sesi Ini)</h2>
+                <button onclick="clearSessionHistory()" class="text-on-surface-variant hover:text-status-error text-label-md">Bersihkan Riwayat</button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-white/40 text-on-surface-variant font-label-md border-b border-glass-border">
+                            <th class="py-3 px-6">Waktu</th>
+                            <th class="py-3 px-6">EPC Tag</th>
+                            <th class="py-3 px-6">Nama Linen</th>
+                            <th class="py-3 px-6">Kategori</th>
+                            <th class="py-3 px-6">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body">
+                        <tr id="empty-history-row">
+                            <td colspan="5" class="py-8 text-center text-on-surface-variant">Belum ada riwayat pengecekan pada sesi ini.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="common.js"></script>
+    <script>
+        let isScanActiveLocal = false;
+
+        async function initCekInfoPage() {
+            await loadPortSelector("select-port-sensor");
+            subscribeWS(handleWSEvent);
+        }
+
+        function toggleScanning() {
+            const selectedPort = document.getElementById("select-port-sensor").value;
+            if (isScanActiveLocal) {
+                sendWSCommand({ type: "stop_inventory" });
+            } else {
+                sendWSCommand({ type: "start_inventory", port: selectedPort });
+            }
+        }
+
+        function handleWSEvent(data) {
+            if (data.type === "init_state" || data.type === "scan_state_changed") {
+                updateScanControlsUI(data.is_scanning_active);
+            } else if (data.type === "epc_detected") {
+                lookupEPC(data.epc);
+            }
+        }
+
+        function updateScanControlsUI(isActive) {
+            isScanActiveLocal = isActive;
+            const btn = document.getElementById("btn-toggle-scan");
+            const btnText = document.getElementById("scan-btn-text");
+            const btnIcon = document.getElementById("scan-icon");
+
+            if (isActive) {
+                btn.className = "bg-status-error hover:bg-status-error/90 text-white font-label-lg px-6 py-2.5 rounded-full shadow-md flex items-center gap-2 whitespace-nowrap w-full sm:w-auto justify-center";
+                btnText.innerText = "Hentikan Scan";
+                btnIcon.innerText = "stop_circle";
+            } else {
+                btn.className = "bg-primary hover:bg-primary/90 text-on-primary font-label-lg px-6 py-2.5 rounded-full shadow-md flex items-center gap-2 whitespace-nowrap w-full sm:w-auto justify-center";
+                btnText.innerText = "Mulai Scan";
+                btnIcon.innerText = "sensors";
+            }
+        }
+
+        function lookupManualEPC() {
+            const epc = document.getElementById("input-manual-epc").value.trim();
+            if (epc) lookupEPC(epc);
+        }
+
+        async function lookupEPC(epc) {
+            try {
+                const resp = await fetch(`${API_BASE}/api/linen/${epc}`);
+                if (resp.status === 200) {
+                    const data = await resp.json();
+                    showFoundState(data);
+                    addSessionHistoryRow(epc, data.nama_linen, data.kategori, data.status, true);
+                } else {
+                    const errorData = await resp.json();
+                    showNotFoundState(epc, errorData.detail || "Item belum terdaftar.");
+                    addSessionHistoryRow(epc, "-", "-", "Belum Terdaftar", false);
+                }
+            } catch (e) {
+                console.error(e);
+                showErrorToast("Gagal mengambil info linen dari server.");
+            }
+        }
+
+        function showFoundState(data) {
+            document.getElementById("state-idle").classList.add("hidden");
+            document.getElementById("state-not-found").classList.add("hidden");
+
+            document.getElementById("found-epc").innerText = data.epc;
+            document.getElementById("found-nama-linen").innerText = data.nama_linen;
+            document.getElementById("found-kategori").innerText = data.kategori;
+
+            const badge = document.getElementById("found-status-badge");
+            badge.innerText = formatTitleCase(data.status);
+            if (data.status === "tersedia") {
+                badge.className = "px-4 py-1.5 bg-status-success/20 text-status-success border border-status-success/30 font-bold rounded-full text-label-md";
+            } else {
+                badge.className = "px-4 py-1.5 bg-primary-container/20 text-primary-container border border-primary-container/30 font-bold rounded-full text-label-md";
+            }
+
+            const rsContainer = document.getElementById("found-rs-container");
+            if (data.nama_rs) {
+                document.getElementById("found-nama-rs").innerText = data.nama_rs;
+                rsContainer.classList.remove("hidden");
+            } else {
+                rsContainer.classList.add("hidden");
+            }
+
+            document.getElementById("state-found").classList.remove("hidden");
+        }
+
+        function showNotFoundState(epc, detailMsg) {
+            document.getElementById("state-idle").classList.add("hidden");
+            document.getElementById("state-found").classList.add("hidden");
+
+            document.getElementById("not-found-epc").innerText = epc;
+            document.getElementById("not-found-detail").innerText = detailMsg;
+
+            document.getElementById("state-not-found").classList.remove("hidden");
+        }
+
+        function addSessionHistoryRow(epc, nama_linen, kategori, status, isFound) {
+            const emptyRow = document.getElementById("empty-history-row");
+            if (emptyRow) emptyRow.remove();
+
+            const tbody = document.getElementById("history-table-body");
+            const timeStr = new Date().toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+
+            const row = document.createElement("tr");
+            row.className = "border-b border-glass-border/50 hover:bg-white/20 transition-colors";
+
+            const badgeClass = isFound
+                ? (status === "tersedia" ? "bg-status-success/20 text-status-success" : "bg-primary-container/20 text-primary-container")
+                : "bg-status-error/20 text-status-error";
+
+            row.innerHTML = `
+                <td class="py-3 px-6 font-data-mono text-on-surface-variant">${timeStr}</td>
+                <td class="py-3 px-6 font-data-mono font-bold text-primary">${epc}</td>
+                <td class="py-3 px-6 font-body-md font-semibold">${nama_linen}</td>
+                <td class="py-3 px-6 font-body-md">${kategori}</td>
+                <td class="py-3 px-6 font-body-md">
+                    <span class="inline-block px-3 py-1 rounded-full text-label-sm font-bold ${badgeClass}">
+                        ${formatTitleCase(status)}
+                    </span>
+                </td>
+            `;
+            tbody.prepend(row);
+        }
+
+        function clearSessionHistory() {
+            document.getElementById("history-table-body").innerHTML = `
+                <tr id="empty-history-row">
+                    <td colspan="5" class="py-8 text-center text-on-surface-variant">Belum ada riwayat pengecekan pada sesi ini.</td>
+                </tr>
+            `;
+        }
+
+        document.addEventListener("DOMContentLoaded", initCekInfoPage);
+    </script>
+</body>
+</html>

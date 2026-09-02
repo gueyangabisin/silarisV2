@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>RFID Linen Pro - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#004673",
+                        "primary-container": "#0077BF",
+                        "on-primary": "#ffffff",
+                        "status-error": "#E02020",
+                        "status-success": "#2DCA73",
+                        "status-warning": "#F7B500",
+                        "status-idle": "#8E8E93",
+                        "background": "#faf9fe",
+                        "surface": "#faf9fe",
+                        "on-surface": "#1a1b1f",
+                        "on-surface-variant": "#414750",
+                        "glass-bg": "rgba(255, 255, 255, 0.25)",
+                        "glass-border": "rgba(255, 255, 255, 0.3)",
+                        "text-muted": "#6E6E73",
+                    },
+                    borderRadius: {
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "header-height": "64px",
+                        "stack-lg": "24px",
+                        "margin-page": "32px",
+                        "gutter": "16px",
+                        "padding-card": "24px",
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "headline-md": ["Poppins"],
+                        "label-md": ["Inter"],
+                        "data-mono": ["Inter"],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+    <!-- Fixed Background Image -->
+    <div class="fixed inset-0 z-[-1] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBxVxpUIDZLWfJHCXhDShJhHAOE7MPa07HGq_C3t77o4LEo_lzVbnXHNoDrlZyNDBLGdV9aDv-PK3yck2T2K5TDFrTgbQzntSjjeuuf90kQE_HTmxnObY6l6c0Wk3e6NpKTK7bf-RRIN85DEpplSWOEqqRAusY7odMbTQ2i-iBALVJ264SUQ1WyfRWXS95xfzzrBfSQclA-Bgk45YXSqkG9UjjTymJ2bpUePHukxa3xOsXdGxFdCNaNvUnkVC_7TuKmw')"></div>
+    <div class="fixed inset-0 z-[-1] bg-black/20"></div>
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center max-w-7xl mx-auto px-6 h-[64px] bg-glass-bg backdrop-blur-[24px] rounded-full mt-4 border border-glass-border shadow-[0_4px_12px_rgba(0,0,0,0.1)] text-primary">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_laundry_service</span>
+            </div>
+            <span class="font-headline-md text-headline-md font-bold">RFID Linen Pro</span>
+        </div>
+        <div class="hidden md:flex gap-1 font-label-lg text-label-lg">
+            <a class="bg-primary text-on-primary rounded-full px-4 py-1.5 flex items-center gap-1 font-semibold" href="index.html">Dashboard</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="pendaftaran.html">Pendaftaran Linen</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="cek_info.html">Cek Info Linen</a>
+            <div class="relative group">
+                <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 flex items-center gap-1 hover:bg-glass-border rounded-full" href="kirim_barang.html">
+                    Pengiriman <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-48 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="kirim_barang.html">Kirim Barang</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="antrean_bermasalah.html">Antrean Bermasalah</a>
+                </div>
+            </div>
+            <div class="relative group">
+                <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 flex items-center gap-1 hover:bg-glass-border rounded-full" href="manajemen_linen.html">
+                    Manajemen Data <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-48 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_linen.html">Linen</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_kategori.html">Kategori Linen</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_nama.html">Nama Linen</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div id="header-reader-badge" class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+                <span class="w-2 h-2 rounded-full bg-status-error"></span>
+                <span class="text-label-sm font-label-sm font-bold text-on-surface">Reader OFF</span>
+            </div>
+            <div id="header-cloud-badge" class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+                <span class="w-2 h-2 rounded-full bg-status-error"></span>
+                <span class="text-label-sm font-label-sm font-bold text-on-surface">Cloud DB OFF</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Canvas -->
+    <main class="pt-[104px] pb-margin-page px-margin-page max-w-7xl mx-auto w-full">
+        <!-- Header Section -->
+        <div class="mb-stack-lg">
+            <h1 class="font-headline-lg text-headline-lg text-white font-Poppins font-bold">Selamat Datang, Operator Gudang</h1>
+            <p class="font-body-md text-body-md text-white/80 mt-1">Ringkasan kondisi gudang dan inventaris hari ini.</p>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+            <!-- Card 1: Total Linen -->
+            <div class="glass-panel rounded-2xl p-padding-card flex flex-col justify-between min-h-[140px]">
+                <div class="flex items-center gap-2 text-primary">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+                    <span class="font-label-md text-label-md text-on-surface-variant font-semibold">Total Linen Terdaftar</span>
+                </div>
+                <div class="mt-4">
+                    <span id="stat-total-linen" class="font-data-mono text-[36px] font-bold text-on-surface leading-none block">...</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Tersedia -->
+            <div class="glass-panel rounded-2xl p-padding-card flex flex-col justify-between min-h-[140px]">
+                <div class="flex items-center gap-2 text-status-success">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    <span class="font-label-md text-label-md text-on-surface-variant font-semibold">Tersedia</span>
+                </div>
+                <div class="mt-4">
+                    <span id="stat-tersedia" class="font-data-mono text-[36px] font-bold text-status-success leading-none block">...</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Dikirim -->
+            <div class="glass-panel rounded-2xl p-padding-card flex flex-col justify-between min-h-[140px]">
+                <div class="flex items-center gap-2 text-primary-container">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+                    <span class="font-label-md text-label-md text-on-surface-variant font-semibold">Dikirim</span>
+                </div>
+                <div class="mt-4">
+                    <span id="stat-dikirim" class="font-data-mono text-[36px] font-bold text-primary-container leading-none block">...</span>
+                </div>
+            </div>
+
+            <!-- Card 4: Antrean Bermasalah -->
+            <div id="card-antrean-bermasalah" onclick="window.location.href='antrean_bermasalah.html'" class="glass-panel rounded-2xl p-padding-card flex flex-col justify-between min-h-[140px] relative cursor-pointer hover:border-status-error/50 transition-all group">
+                <div id="badge-antrean-bermasalah" class="absolute -top-2 -right-2 w-6 h-6 bg-status-error text-white rounded-full flex items-center justify-center font-label-sm text-label-sm font-bold shadow-lg shadow-status-error/30 group-hover:scale-110 transition-transform hidden">
+                    0
+                </div>
+                <div id="card-antrean-header" class="flex items-center gap-2 text-status-idle">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+                    <span class="font-label-md text-label-md font-semibold">Perlu Tindakan</span>
+                </div>
+                <div class="mt-4">
+                    <span id="stat-antrean-bermasalah" class="font-data-mono text-[36px] font-bold text-status-idle leading-none block">...</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="common.js"></script>
+    <script>
+        async function fetchDashboardSummary() {
+            try {
+                const resp = await fetch(`${API_BASE}/api/dashboard/summary`);
+                if (!resp.ok) throw new Error("Gagal mengambil data summary dashboard");
+                const data = await resp.json();
+
+                document.getElementById("stat-total-linen").innerText = data.total_linen.toLocaleString("id-ID");
+                document.getElementById("stat-tersedia").innerText = data.total_tersedia.toLocaleString("id-ID");
+                document.getElementById("stat-dikirim").innerText = data.total_dikirim.toLocaleString("id-ID");
+
+                const antreanVal = data.total_antrean_bermasalah;
+                const antreanStatEl = document.getElementById("stat-antrean-bermasalah");
+                const antreanBadgeEl = document.getElementById("badge-antrean-bermasalah");
+                const antreanHeaderEl = document.getElementById("card-antrean-header");
+
+                antreanStatEl.innerText = antreanVal.toLocaleString("id-ID");
+
+                if (antreanVal > 0) {
+                    antreanStatEl.className = "font-data-mono text-[36px] font-bold text-status-error leading-none block";
+                    antreanHeaderEl.className = "flex items-center gap-2 text-status-error font-semibold";
+                    antreanBadgeEl.innerText = antreanVal > 99 ? "99+" : antreanVal;
+                    antreanBadgeEl.classList.remove("hidden");
+                } else {
+                    antreanStatEl.className = "font-data-mono text-[36px] font-bold text-status-idle leading-none block";
+                    antreanHeaderEl.className = "flex items-center gap-2 text-status-idle";
+                    antreanBadgeEl.classList.add("hidden");
+                }
+            } catch (err) {
+                console.error("Dashboard error:", err);
+                showErrorToast("Gagal memuat ringkasan dashboard.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchDashboardSummary);
+    </script>
+</body>
+</html>

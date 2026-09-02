@@ -13,7 +13,7 @@ class Settings(BaseSettings):
 
     # Serial / RFID
     ALLOWED_DRIVERS: str = "cp210"
-    MOCK_SERIAL: bool = True
+    MOCK_SERIAL: bool = False
 
     # Sync Worker
     SYNC_LOOP_INTERVAL_SECONDS: int = 30

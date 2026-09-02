@@ -67,10 +67,22 @@ async def lifespan(app: FastAPI):
         on_error=_on_serial_error,
     )
 
-    # Set mock mode based on config
+    # Set mock mode or auto-connect to real serial port
     if settings.MOCK_SERIAL:
         logger.info("Mock serial mode ENABLED — no real hardware required")
-        serial_service.serial_connected = False  # No real port in mock mode
+        serial_service.serial_connected = False
+    else:
+        logger.info("Real serial mode ENABLED — checking for connected RFID readers...")
+        from app.routers.ports import list_serial_ports
+        matching_ports = list_serial_ports()
+        if len(matching_ports) == 1:
+            single_port = matching_ports[0]["port"]
+            logger.info(f"Auto-connecting to single matching serial port: {single_port}")
+            await serial_service.open_port(single_port)
+        elif len(matching_ports) > 1:
+            logger.info(f"Found {len(matching_ports)} matching serial ports. Waiting for user selection.")
+        else:
+            logger.info("No matching serial ports found on startup.")
 
     # Start background sync service (cloud health check + pending upload loop)
     await sync_service.start()
@@ -135,13 +147,21 @@ from app.websocket import websocket_endpoint
 app.websocket("/ws")(websocket_endpoint)
 
 
-# ────────────────────── Health Check ──────────────────────
+import os
+from fastapi.staticfiles import StaticFiles
 
-@app.get("/", tags=["Health"])
-def root():
-    """Basic health check endpoint."""
-    return {
-        "status": "ok",
-        "app": "RFID Linen Pro API",
-        "version": "1.0.0",
-    }
+# ────────────────────── Serve Frontend ──────────────────────
+
+frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend"))
+if os.path.exists(frontend_path):
+    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
+else:
+    @app.get("/", tags=["Health"])
+    def root():
+        """Basic health check endpoint."""
+        return {
+            "status": "ok",
+            "app": "RFID Linen Pro API",
+            "version": "1.0.0",
+        }
+

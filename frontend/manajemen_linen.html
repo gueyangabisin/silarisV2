@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Manajemen Linen - RFID Linen Pro</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#004673",
+                        "primary-container": "#0077BF",
+                        "on-primary": "#ffffff",
+                        "status-error": "#E02020",
+                        "status-success": "#2DCA73",
+                        "status-warning": "#F7B500",
+                        "status-idle": "#8E8E93",
+                        "background": "#faf9fe",
+                        "surface": "#faf9fe",
+                        "on-surface": "#1a1b1f",
+                        "on-surface-variant": "#414750",
+                        "glass-bg": "rgba(255, 255, 255, 0.25)",
+                        "glass-border": "rgba(255, 255, 255, 0.3)",
+                        "text-muted": "#6E6E73",
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "headline-md": ["Poppins"],
+                        "label-md": ["Inter"],
+                        "data-mono": ["Inter"],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+    <!-- Fixed Background Image -->
+    <div class="fixed inset-0 z-[-1] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBxVxpUIDZLWfJHCXhDShJhHAOE7MPa07HGq_C3t77o4LEo_lzVbnXHNoDrlZyNDBLGdV9aDv-PK3yck2T2K5TDFrTgbQzntSjjeuuf90kQE_HTmxnObY6l6c0Wk3e6NpKTK7bf-RRIN85DEpplSWOEqqRAusY7odMbTQ2i-iBALVJ264SUQ1WyfRWXS95xfzzrBfSQclA-Bgk45YXSqkG9UjjTymJ2bpUePHukxa3xOsXdGxFdCNaNvUnkVC_7TuKmw')"></div>
+    <div class="fixed inset-0 z-[-1] bg-black/20"></div>
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center max-w-7xl mx-auto px-6 h-[64px] bg-glass-bg backdrop-blur-[24px] rounded-full mt-4 border border-glass-border shadow-[0_4px_12px_rgba(0,0,0,0.1)] text-primary">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_laundry_service</span>
+            </div>
+            <span class="font-headline-md text-headline-md font-bold">RFID Linen Pro</span>
+        </div>
+        <div class="hidden md:flex gap-1 font-label-lg text-label-lg">
+            <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="index.html">Dashboard</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="pendaftaran.html">Pendaftaran Linen</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="cek_info.html">Cek Info Linen</a>
+            <div class="relative group">
+                <a class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 flex items-center gap-1 hover:bg-glass-border rounded-full" href="kirim_barang.html">
+                    Pengiriman <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-48 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="kirim_barang.html">Kirim Barang</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="antrean_bermasalah.html">Antrean Bermasalah</a>
+                </div>
+            </div>
+            <div class="relative group">
+                <a class="bg-primary text-on-primary rounded-full px-4 py-1.5 flex items-center gap-1 font-semibold" href="manajemen_linen.html">
+                    Manajemen Data <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-48 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-primary font-bold" href="manajemen_linen.html">Linen</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_kategori.html">Kategori Linen</a>
+                    <a class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="manajemen_nama.html">Nama Linen</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div id="header-reader-badge" class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+                <span class="w-2 h-2 rounded-full bg-status-error"></span>
+                <span class="text-label-sm font-label-sm font-bold text-on-surface">Reader OFF</span>
+            </div>
+            <div id="header-cloud-badge" class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+                <span class="w-2 h-2 rounded-full bg-status-error"></span>
+                <span class="text-label-sm font-label-sm font-bold text-on-surface">Cloud DB OFF</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Canvas -->
+    <main class="pt-[104px] pb-16 px-6 max-w-7xl mx-auto w-full flex flex-col gap-6">
+        <!-- Glass Panel Table Container -->
+        <div class="glass-panel rounded-2xl border border-glass-border shadow-sm w-full overflow-hidden flex flex-col">
+            <!-- Panel Header & Controls -->
+            <div class="p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-glass-border">
+                <div>
+                    <h1 class="font-headline-lg text-headline-lg font-bold text-primary">Manajemen Data Linen</h1>
+                    <p class="font-body-md text-on-surface-variant">Kelola daftar item linen terdaftar, status, dan kategori.</p>
+                </div>
+                <button onclick="openAddModal()" class="bg-primary hover:bg-primary/90 text-on-primary font-label-lg px-5 py-2.5 rounded-full shadow-md transition-all flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[20px]">add</span>
+                    Tambah Data Linen
+                </button>
+            </div>
+
+            <!-- Filter & Search Bar -->
+            <div class="p-4 bg-white/30 flex flex-col sm:flex-row gap-4 justify-between items-center border-b border-glass-border">
+                <div class="relative w-full sm:w-80">
+                    <span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[20px]">search</span>
+                    <input id="input-search" type="text" placeholder="Cari EPC atau Nama Linen..." onkeyup="onSearchKeyUp(event)" class="w-full pl-10 pr-4 py-2 bg-white/60 border border-glass-border rounded-full text-body-md focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+                    <label class="font-label-md text-on-surface-variant">Filter Status:</label>
+                    <select id="select-status" onchange="onStatusFilterChange()" class="bg-white/60 border border-glass-border rounded-full px-4 py-2 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option value="">Semua Status</option>
+                        <option value="tersedia">Tersedia</option>
+                        <option value="dikirim">Dikirim</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-white/40 text-on-surface-variant font-label-md border-b border-glass-border">
+                            <th class="py-3 px-6">EPC Tag</th>
+                            <th class="py-3 px-6">Kategori</th>
+                            <th class="py-3 px-6">Nama Linen</th>
+                            <th class="py-3 px-6">Status</th>
+                            <th class="py-3 px-6 text-right">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <tr>
+                            <td colspan="5" class="py-8 text-center text-on-surface-variant">Memuat data linen...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Footer -->
+            <div class="p-4 bg-white/30 border-t border-glass-border flex flex-col sm:flex-row justify-between items-center gap-4">
+                <span id="pagination-info" class="font-body-sm text-on-surface-variant">Menampilkan 0 - 0 dari 0 data</span>
+                <div class="flex items-center gap-2">
+                    <button id="btn-prev-page" onclick="changePage(-1)" class="px-3 py-1.5 bg-white/50 border border-glass-border rounded-full text-label-md disabled:opacity-40">Previous</button>
+                    <span id="pagination-pages" class="font-label-md px-3 py-1">Halaman 1 / 1</span>
+                    <button id="btn-next-page" onclick="changePage(1)" class="px-3 py-1.5 bg-white/50 border border-glass-border rounded-full text-label-md disabled:opacity-40">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Form (Tambah / Edit) -->
+    <div id="modal-linen" class="fixed inset-0 z-[150] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-surface/90 backdrop-blur-2xl border border-glass-border rounded-2xl p-6 max-w-md w-full shadow-2xl flex flex-col gap-4">
+            <h2 id="modal-title" class="font-headline-md font-bold text-primary">Tambah Linen Baru</h2>
+            <form id="form-linen" onsubmit="handleFormSubmit(event)" class="flex flex-col gap-4">
+                <input type="hidden" id="form-mode" value="add" />
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-md text-on-surface">EPC Tag (24 karakter hex)</label>
+                    <input id="form-epc" type="text" required maxlength="24" placeholder="300833B2DDD9014000000001" class="bg-white/60 border border-glass-border rounded-xl px-4 py-2 text-body-md font-data-mono focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-md text-on-surface">Kategori Linen</label>
+                    <select id="form-kategori" required onchange="onModalKategoriChange()" class="bg-white/60 border border-glass-border rounded-xl px-4 py-2 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option value="">-- Pilih Kategori --</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-md text-on-surface">Nama Linen</label>
+                    <select id="form-nama" required class="bg-white/60 border border-glass-border rounded-xl px-4 py-2 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option value="">-- Pilih Nama Linen --</option>
+                    </select>
+                </div>
+                <div id="form-status-container" class="flex flex-col gap-1 hidden">
+                    <label class="font-label-md text-on-surface">Status</label>
+                    <select id="form-status" class="bg-white/60 border border-glass-border rounded-xl px-4 py-2 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option value="tersedia">Tersedia</option>
+                        <option value="dikirim">Dikirim</option>
+                    </select>
+                </div>
+                <div class="flex justify-end gap-3 mt-4">
+                    <button type="button" onclick="closeModal()" class="px-5 py-2 rounded-full border border-glass-border text-label-lg hover:bg-white/50">Batal</button>
+                    <button type="submit" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-lg shadow-md hover:bg-primary/90">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+        let currentPage = 1;
+        let totalPages = 1;
+        let limit = 50;
+        let searchKeyword = "";
+        let statusFilter = "";
+
+        async function fetchLinenList() {
+            const tbody = document.getElementById("table-body");
+            tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-on-surface-variant">Memuat data...</td></tr>`;
+
+            try {
+                let url = `${API_BASE}/api/linen?page=${currentPage}&limit=${limit}`;
+                if (searchKeyword) url += `&search=${encodeURIComponent(searchKeyword)}`;
+                if (statusFilter) url += `&status=${encodeURIComponent(statusFilter)}`;
+
+                const resp = await fetch(url);
+                if (!resp.ok) throw new Error("Gagal mengambil data linen");
+                const res = await resp.json();
+
+                totalPages = res.total_page;
+                renderTable(res.data);
+                updatePaginationControls(res);
+            } catch (err) {
+                console.error(err);
+                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-status-error">Error: ${err.message}</td></tr>`;
+            }
+        }
+
+        function renderTable(items) {
+            const tbody = document.getElementById("table-body");
+            if (!items || items.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-on-surface-variant">Tidak ada data linen.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = items.map(item => {
+                const isTersedia = item.status === "tersedia";
+                const badgeClass = isTersedia ? "bg-status-success/20 text-status-success border-status-success/30" : "bg-primary-container/20 text-primary-container border-primary-container/30";
+                return `
+                    <tr class="border-b border-glass-border/50 hover:bg-white/20 transition-colors">
+                        <td class="py-3.5 px-6 font-data-mono font-bold text-primary">${item.epc}</td>
+                        <td class="py-3.5 px-6 font-body-md">${item.kategori}</td>
+                        <td class="py-3.5 px-6 font-body-md font-semibold">${item.nama_linen}</td>
+                        <td class="py-3.5 px-6 font-body-md">
+                            <span class="inline-block px-3 py-1 rounded-full text-label-sm font-bold border ${badgeClass}">
+                                ${formatTitleCase(item.status)}
+                            </span>
+                        </td>
+                        <td class="py-3.5 px-6 text-right">
+                            <button onclick='openEditModal(${JSON.stringify(item)})' class="text-primary hover:underline font-label-md mr-3">Edit</button>
+                            <button onclick="confirmDelete('${item.epc}')" class="text-status-error hover:underline font-label-md">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+        }
+
+        function updatePaginationControls(res) {
+            const start = res.total_data === 0 ? 0 : (res.current_page - 1) * limit + 1;
+            const end = Math.min(res.current_page * limit, res.total_data);
+            document.getElementById("pagination-info").innerText = `Menampilkan ${start} - ${end} dari ${res.total_data} data`;
+            document.getElementById("pagination-pages").innerText = `Halaman ${res.current_page} / ${res.total_page}`;
+
+            document.getElementById("btn-prev-page").disabled = res.current_page <= 1;
+            document.getElementById("btn-next-page").disabled = res.current_page >= res.total_page;
+        }
+
+        function changePage(delta) {
+            if (currentPage + delta >= 1 && currentPage + delta <= totalPages) {
+                currentPage += delta;
+                fetchLinenList();
+            }
+        }
+
+        function onSearchKeyUp(event) {
+            if (event.key === "Enter" || event.target.value.length === 0) {
+                searchKeyword = event.target.value.trim();
+                currentPage = 1;
+                fetchLinenList();
+            }
+        }
+
+        function onStatusFilterChange() {
+            statusFilter = document.getElementById("select-status").value;
+            currentPage = 1;
+            fetchLinenList();
+        }
+
+        // Modal Helpers
+        async function loadKategoriOptions(targetSelectId, selectedKategoriId = null) {
+            try {
+                const resp = await fetch(`${API_BASE}/api/kategori`);
+                const categories = await resp.json();
+                const select = document.getElementById(targetSelectId);
+                select.innerHTML = `<option value="">-- Pilih Kategori --</option>` +
+                    categories.map(c => `<option value="${c.kategori_id}" ${c.kategori_id == selectedKategoriId ? 'selected' : ''}>${c.nama}</option>`).join("");
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function onModalKategoriChange(selectedNamaId = null) {
+            const katId = document.getElementById("form-kategori").value;
+            const namaSelect = document.getElementById("form-nama");
+            if (!katId) {
+                namaSelect.innerHTML = `<option value="">-- Pilih Nama Linen --</option>`;
+                return;
+            }
+            try {
+                const resp = await fetch(`${API_BASE}/api/nama-linen?kategori_id=${katId}`);
+                const names = await resp.json();
+                namaSelect.innerHTML = `<option value="">-- Pilih Nama Linen --</option>` +
+                    names.map(n => `<option value="${n.nama_id}" ${n.nama_id == selectedNamaId ? 'selected' : ''}>${n.nama_linen}</option>`).join("");
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function openAddModal() {
+            document.getElementById("modal-title").innerText = "Tambah Linen Baru";
+            document.getElementById("form-mode").value = "add";
+            document.getElementById("form-epc").disabled = false;
+            document.getElementById("form-epc").value = "";
+            document.getElementById("form-status-container").classList.add("hidden");
+            await loadKategoriOptions("form-kategori");
+            document.getElementById("form-nama").innerHTML = `<option value="">-- Pilih Nama Linen --</option>`;
+            document.getElementById("modal-linen").classList.remove("hidden");
+        }
+
+        async function openEditModal(item) {
+            document.getElementById("modal-title").innerText = "Edit Data Linen";
+            document.getElementById("form-mode").value = "edit";
+            document.getElementById("form-epc").value = item.epc;
+            document.getElementById("form-epc").disabled = true;
+            document.getElementById("form-status-container").classList.remove("hidden");
+            document.getElementById("form-status").value = item.status;
+
+            await loadKategoriOptions("form-kategori", item.kategori_id);
+            await onModalKategoriChange(item.nama_id);
+
+            document.getElementById("modal-linen").classList.remove("hidden");
+        }
+
+        function closeModal() {
+            document.getElementById("modal-linen").classList.add("hidden");
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const mode = document.getElementById("form-mode").value;
+            const epc = document.getElementById("form-epc").value.trim();
+            const kategori_id = parseInt(document.getElementById("form-kategori").value);
+            const nama_id = parseInt(document.getElementById("form-nama").value);
+
+            if (mode === "add") {
+                try {
+                    const resp = await fetch(`${API_BASE}/api/linen`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ epc, kategori_id, nama_id })
+                    });
+                    const res = await resp.json();
+                    if (!resp.ok) {
+                        showErrorModal("Gagal Menambahkan Linen", res.detail || "Terjadi kesalahan saat menyimpan data.");
+                        return;
+                    }
+                    showSuccessToast("Linen berhasil didaftarkan!");
+                    closeModal();
+                    fetchLinenList();
+                } catch (e) {
+                    showErrorModal("Error", "Gagal menghubungi server.");
+                }
+            } else {
+                const status = document.getElementById("form-status").value;
+                try {
+                    const resp = await fetch(`${API_BASE}/api/linen/${epc}`, {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ kategori_id, nama_id, status })
+                    });
+                    const res = await resp.json();
+                    if (!resp.ok) {
+                        showErrorModal("Gagal Mengedit Linen", res.detail || "Terjadi kesalahan saat memperbarui data.");
+                        return;
+                    }
+                    showSuccessToast("Linen berhasil diperbarui!");
+                    closeModal();
+                    fetchLinenList();
+                } catch (e) {
+                    showErrorModal("Error", "Gagal menghubungi server.");
+                }
+            }
+        }
+
+        async function confirmDelete(epc) {
+            if (!confirm(`Apakah Anda yakin ingin menghapus data linen EPC: ${epc}?`)) return;
+
+            try {
+                const resp = await fetch(`${API_BASE}/api/linen/${epc}`, { method: "DELETE" });
+                const res = await resp.json();
+                if (!resp.ok) {
+                    showErrorModal("Gagal Menghapus Linen", res.detail || "Item ini masih tercatat dalam riwayat pengiriman aktif.");
+                    return;
+                }
+                showSuccessToast("Linen berhasil dihapus.");
+                fetchLinenList();
+            } catch (e) {
+                showErrorModal("Error", "Gagal menghubungi server.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchLinenList);
+    </script>
+</body>
+</html>
