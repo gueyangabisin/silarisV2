@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>RFID Linen Pro</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind Config — Design Tokens (1:1 replica from legacy frontend) -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#004673",
+                        "primary-container": "#0077BF",
+                        "on-primary": "#ffffff",
+                        "status-error": "#E02020",
+                        "status-success": "#2DCA73",
+                        "status-warning": "#F7B500",
+                        "status-idle": "#8E8E93",
+                        "background": "#faf9fe",
+                        "surface": "#faf9fe",
+                        "on-surface": "#1a1b1f",
+                        "on-surface-variant": "#414750",
+                        "glass-bg": "rgba(255, 255, 255, 0.25)",
+                        "glass-border": "rgba(255, 255, 255, 0.3)",
+                        "text-muted": "#6E6E73",
+                    },
+                    borderRadius: {
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "header-height": "64px",
+                        "stack-lg": "24px",
+                        "margin-page": "32px",
+                        "gutter": "16px",
+                        "padding-card": "24px",
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "headline-md": ["Poppins"],
+                        "label-md": ["Inter"],
+                        "data-mono": ["Inter"],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Shell Entry Point -->
+    <script type="module" src="js/shell.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+    <!-- Fixed Background Image -->
+    <div class="fixed inset-0 z-[-1] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBxVxpUIDZLWfJHCXhDShJhHAOE7MPa07HGq_C3t77o4LEo_lzVbnXHNoDrlZyNDBLGdV9aDv-PK3yck2T2K5TDFrTgbQzntSjjeuuf90kQE_HTmxnObY6l6c0Wk3e6NpKTK7bf-RRIN85DEpplSWOEqqRAusY7odMbTQ2i-iBALVJ264SUQ1WyfRWXS95xfzzrBfSQclA-Bgk45YXSqkG9UjjTymJ2bpUePHukxa3xOsXdGxFdCNaNvUnkVC_7TuKmw')"></div>
+    <div class="fixed inset-0 z-[-1] bg-black/20"></div>
+
+    <!-- ═══════════════════ PERSISTENT NAV BAR ═══════════════════ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center max-w-7xl mx-auto px-6 h-[64px] bg-glass-bg backdrop-blur-[24px] rounded-full mt-4 border border-glass-border shadow-[0_4px_12px_rgba(0,0,0,0.1)] text-primary">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_laundry_service</span>
+            </div>
+            <span class="font-headline-md text-headline-md font-bold">RFID Linen Pro</span>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex gap-1 font-label-lg text-label-lg">
+            <a data-route class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="/v2/">Dashboard</a>
+            <a data-route class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="/v2/pendaftaran">Pendaftaran Linen</a>
+            <a data-route class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 hover:bg-glass-border rounded-full" href="/v2/cek-info">Cek Info Linen</a>
+
+            <!-- Dropdown: Pengiriman -->
+            <div class="relative group" data-dropdown>
+                <a data-dropdown-trigger class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 flex items-center gap-1 hover:bg-glass-border rounded-full cursor-pointer">
+                    Pengiriman <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-48 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a data-route class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="/v2/kirim-barang">Kirim Barang</a>
+                    <a data-route class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="/v2/antrean-bermasalah">Antrean Bermasalah</a>
+                </div>
+            </div>
+
+            <!-- Dropdown: Manajemen Data -->
+            <div class="relative group" data-dropdown>
+                <a data-dropdown-trigger class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 flex items-center gap-1 hover:bg-glass-border rounded-full cursor-pointer">
+                    Manajemen Data <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-48 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a data-route class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="/v2/manajemen-linen">Linen</a>
+                    <a data-route class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="/v2/kategori-linen">Kategori Linen</a>
+                    <a data-route class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="/v2/manajemen-nama">Nama Linen</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Badges (Alpine.js reactive) -->
+        <div class="flex items-center gap-4" x-data>
+            <!-- Reader Badge -->
+            <div class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+                <span class="w-2 h-2 rounded-full"
+                      :class="$store.connection.isScanningActive
+                          ? 'bg-status-warning animate-ping'
+                          : ($store.connection.serialConnected ? 'bg-status-success' : 'bg-status-error')"></span>
+                <span class="text-label-sm font-label-sm font-bold text-on-surface"
+                      x-text="$store.connection.isScanningActive
+                          ? 'Scanning...'
+                          : ($store.connection.serialConnected ? 'Reader ON' : 'Reader OFF')"></span>
+            </div>
+            <!-- Cloud DB Badge -->
+            <div class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
+                <span class="w-2 h-2 rounded-full"
+                      :class="$store.connection.cloudOnline ? 'bg-status-success' : 'bg-status-error'"></span>
+                <span class="text-label-sm font-label-sm font-bold text-on-surface"
+                      x-text="$store.connection.cloudOnline ? 'Cloud DB ON' : 'Cloud DB OFF'"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════ MAIN CONTENT (swapped by router) ═══════════════════ -->
+    <main id="app-content" class="pt-[104px] pb-16 px-6 max-w-7xl mx-auto w-full flex flex-col gap-6">
+        <!-- Initial loading state (replaced on first route render) -->
+        <div class="flex items-center justify-center min-h-[60vh]">
+            <div class="flex flex-col items-center gap-4 text-on-surface-variant">
+                <div class="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin"></div>
+                <p class="font-body-md">Memuat aplikasi...</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

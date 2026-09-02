@@ -149,9 +149,29 @@ app.websocket("/ws")(websocket_endpoint)
 
 import os
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 # ────────────────────── Serve Frontend ──────────────────────
 
+# Vanilla SPA (v2) — catch-all for History API routing
+frontend_vanilla_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend-vanilla"))
+if os.path.exists(frontend_vanilla_path):
+    # Serve static assets (js/, css/, etc.) under /v2/
+    app.mount("/v2/js", StaticFiles(directory=os.path.join(frontend_vanilla_path, "js")), name="frontend-vanilla-js")
+
+    # SPA catch-all: any /v2/* route that isn't a static file → serve index.html
+    @app.get("/v2/{path:path}", tags=["Frontend V2"], include_in_schema=False)
+    @app.get("/v2", tags=["Frontend V2"], include_in_schema=False)
+    async def serve_spa(path: str = ""):
+        """Serve the SPA index.html for all /v2/* routes (History API fallback)."""
+        # If the path points to a real file, serve it directly
+        file_path = os.path.join(frontend_vanilla_path, path)
+        if path and os.path.isfile(file_path):
+            return FileResponse(file_path)
+        # Otherwise serve index.html (SPA catch-all)
+        return FileResponse(os.path.join(frontend_vanilla_path, "index.html"))
+
+# Mount legacy multi-page frontend at root
 frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend"))
 if os.path.exists(frontend_path):
     app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
