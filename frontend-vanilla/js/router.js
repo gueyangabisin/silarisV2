@@ -16,21 +16,24 @@ import { rumahSakitPage, registerRumahSakitComponent } from './pages/rumah-sakit
 import { historiPengirimanPage, registerHistoriPengirimanComponent } from './pages/histori-pengiriman.js';
 import { dashboardPage, registerDashboardComponent } from './pages/dashboard.js';
 import { antreanBermasalahPage, registerAntreanBermasalahComponent } from './pages/antrean-bermasalah.js';
-import { createPlaceholderPage } from './pages/placeholder.js';
+import { pendaftaranLinenPage, registerPendaftaranLinenComponent } from './pages/pendaftaran-linen.js';
+import { cekInfoLinenPage, registerCekInfoLinenComponent } from './pages/cek-info-linen.js';
+import { pengirimanKirimBarangPage, registerPengirimanKirimBarangComponent } from './pages/pengiriman-kirim-barang.js';
+import { registerPortSelectorComponent } from './components/port-selector.js';
 
 // ─── Route Definitions ───────────────────────────────────
 
 const routes = {
-    '/v2/':                     { page: dashboardPage,                                                     title: 'Dashboard' },
-    '/v2/pendaftaran':          { page: createPlaceholderPage('Pendaftaran Linen', '/v2/pendaftaran'),     title: 'Pendaftaran Linen' },
-    '/v2/cek-info':             { page: createPlaceholderPage('Cek Info Linen', '/v2/cek-info'),           title: 'Cek Info Linen' },
-    '/v2/kirim-barang':         { page: createPlaceholderPage('Kirim Barang', '/v2/kirim-barang'),         title: 'Kirim Barang' },
-    '/v2/antrean-bermasalah':   { page: antreanBermasalahPage,                                             title: 'Antrean Bermasalah' },
-    '/v2/manajemen-linen':      { page: manajemenLinenPage,                                                title: 'Manajemen Linen' },
-    '/v2/kategori-linen':       { page: kategoriLinenPage,                                                  title: 'Manajemen Kategori Linen' },
-    '/v2/manajemen-nama':       { page: namaLinenPage,                                                     title: 'Manajemen Nama Linen' },
-    '/v2/rumah-sakit':          { page: rumahSakitPage,                                                    title: 'Rumah Sakit' },
-    '/v2/histori-pengiriman':   { page: historiPengirimanPage,                                             title: 'Histori Pengiriman' },
+    '/v2/':                     { page: dashboardPage,                title: 'Dashboard' },
+    '/v2/pendaftaran':          { page: pendaftaranLinenPage,         title: 'Pendaftaran Linen' },
+    '/v2/cek-info':             { page: cekInfoLinenPage,             title: 'Cek Info Linen' },
+    '/v2/kirim-barang':         { page: pengirimanKirimBarangPage,    title: 'Kirim Barang' },
+    '/v2/antrean-bermasalah':   { page: antreanBermasalahPage,        title: 'Antrean Bermasalah' },
+    '/v2/manajemen-linen':      { page: manajemenLinenPage,           title: 'Manajemen Linen' },
+    '/v2/kategori-linen':       { page: kategoriLinenPage,            title: 'Manajemen Kategori Linen' },
+    '/v2/manajemen-nama':       { page: namaLinenPage,                title: 'Manajemen Nama Linen' },
+    '/v2/rumah-sakit':          { page: rumahSakitPage,               title: 'Rumah Sakit' },
+    '/v2/histori-pengiriman':   { page: historiPengirimanPage,        title: 'Histori Pengiriman' },
 };
 
 /** Currently mounted page (has unmount()) */
@@ -48,7 +51,10 @@ function init() {
         return;
     }
 
-    // Register Alpine components before first navigation
+    // Register ALL Alpine components before first navigation.
+    // CRITICAL: portSelectorComponent MUST be registered here so it is
+    // available when Alpine.initTree() is called after render().
+    registerPortSelectorComponent();
     registerKategoriLinenComponent();
     registerNamaLinenComponent();
     registerManajemenLinenComponent();
@@ -56,6 +62,9 @@ function init() {
     registerHistoriPengirimanComponent();
     registerDashboardComponent();
     registerAntreanBermasalahComponent();
+    registerPendaftaranLinenComponent();
+    registerCekInfoLinenComponent();
+    registerPengirimanKirimBarangComponent();
 
     // Intercept clicks on nav links with data-route attribute
     document.addEventListener('click', (e) => {

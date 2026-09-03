@@ -209,8 +209,8 @@ export const namaLinenPage = {
         `;
     },
 
-    mount() {},
-    unmount() {},
+    mount() { },
+    unmount() { },
 };
 
 export function registerNamaLinenComponent() {

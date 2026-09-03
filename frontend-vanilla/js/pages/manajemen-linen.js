@@ -279,8 +279,8 @@ export const manajemenLinenPage = {
         `;
     },
 
-    mount() {},
-    unmount() {},
+    mount() { },
+    unmount() { },
 };
 
 export function registerManajemenLinenComponent() {
@@ -329,7 +329,7 @@ export function registerManajemenLinenComponent() {
                 try {
                     const resp = await api.getLinenList(this.page, this.limit, this.search.trim(), this.filterStatus);
                     if (!resp.ok) throw new Error(resp.data?.detail || 'Gagal mengambil data linen');
-                    
+
                     const resData = resp.data || {};
                     this.items = resData.data || [];
                     this.total_data = resData.total_data || 0;

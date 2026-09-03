@@ -149,6 +149,15 @@ async function deleteLinen(epc) {
     });
 }
 
+/**
+ * GET /api/linen/{epc} — get single linen by EPC.
+ * Returns 404 {detail} if not found.
+ * @param {string} epc
+ */
+async function getLinenByEpc(epc) {
+    return _fetch(`/api/linen/${encodeURIComponent(epc)}`);
+}
+
 // ─── Admin Cloud — Rumah Sakit ────────────────────────────
 
 async function getRumahSakitList() {
@@ -206,6 +215,17 @@ async function cancelPengiriman(tempId) {
     });
 }
 
+/**
+ * POST /api/pengiriman — create a new shipment.
+ * @param {{ rs_id: number, daftar_epc: string[] }} payload
+ */
+async function createPengiriman(payload) {
+    return _fetch('/api/pengiriman', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+    });
+}
+
 // ─── Ports ────────────────────────────────────────────────
 
 async function getSerialPorts() {
@@ -240,6 +260,7 @@ export const api = {
     createLinen,
     updateLinen,
     deleteLinen,
+    getLinenByEpc,
     // Rumah Sakit
     getRumahSakitList,
     createRumahSakit,
@@ -252,8 +273,11 @@ export const api = {
     getAntreanBermasalah,
     retryPengiriman,
     cancelPengiriman,
+    // Pengiriman
+    createPengiriman,
     // Ports
     getSerialPorts,
     openSerialPort,
 };
+
 
