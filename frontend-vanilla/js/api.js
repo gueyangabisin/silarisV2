@@ -87,15 +87,123 @@ async function getDashboardSummary() {
 
 // ─── Nama Linen ───────────────────────────────────────────
 
-async function getNamaLinenList() {
-    return _fetch('/api/nama-linen');
+/**
+ * GET /api/nama-linen — returns plain array of nama linen objects.
+ * @param {number|null} [kategoriId]
+ */
+async function getNamaLinenList(kategoriId = null) {
+    const url = kategoriId ? `/api/nama-linen?kategori_id=${kategoriId}` : '/api/nama-linen';
+    return _fetch(url);
+}
+
+async function createNamaLinen(payload) {
+    return _fetch('/api/nama-linen', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+    });
+}
+
+async function updateNamaLinen(id, payload) {
+    return _fetch(`/api/nama-linen/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+    });
+}
+
+async function deleteNamaLinen(id) {
+    return _fetch(`/api/nama-linen/${id}`, {
+        method: 'DELETE',
+    });
 }
 
 // ─── Linen ────────────────────────────────────────────────
 
-async function getLinenList(page = 1, limit = 50, search = '') {
-    const params = new URLSearchParams({ page, limit, search });
+/**
+ * GET /api/linen — returns wrapped object { data, total_data, total_page, current_page }
+ */
+async function getLinenList(page = 1, limit = 50, search = '', status = '', kategoriId = null) {
+    const params = new URLSearchParams({ page, limit });
+    if (search) params.append('search', search);
+    if (status) params.append('status', status);
+    if (kategoriId) params.append('kategori_id', kategoriId);
     return _fetch(`/api/linen?${params}`);
+}
+
+async function createLinen(payload) {
+    return _fetch('/api/linen', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+    });
+}
+
+async function updateLinen(epc, payload) {
+    return _fetch(`/api/linen/${epc}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+    });
+}
+
+async function deleteLinen(epc) {
+    return _fetch(`/api/linen/${epc}`, {
+        method: 'DELETE',
+    });
+}
+
+// ─── Admin Cloud — Rumah Sakit ────────────────────────────
+
+async function getRumahSakitList() {
+    return _fetch('/api/rumah-sakit');
+}
+
+async function createRumahSakit(payload) {
+    return _fetch('/api/rumah-sakit', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+    });
+}
+
+async function updateRumahSakit(id, payload) {
+    return _fetch(`/api/rumah-sakit/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+    });
+}
+
+async function deleteRumahSakit(id) {
+    return _fetch(`/api/rumah-sakit/${id}`, {
+        method: 'DELETE',
+    });
+}
+
+// ─── Admin Cloud — Histori Pengiriman ─────────────────────
+
+async function getHistoriPengiriman({ start_date = '', end_date = '', page = 1, limit = 50 } = {}) {
+    const params = new URLSearchParams({ page, limit });
+    if (start_date) params.append('start_date', start_date);
+    if (end_date) params.append('end_date', end_date);
+    return _fetch(`/api/pengiriman/histori?${params}`);
+}
+
+async function getDetailPengiriman(pengirimanId) {
+    return _fetch(`/api/pengiriman/histori/${pengirimanId}`);
+}
+
+// ─── Pengiriman — Antrean Bermasalah ──────────────────────
+
+async function getAntreanBermasalah() {
+    return _fetch('/api/pengiriman/antrean-bermasalah');
+}
+
+async function retryPengiriman(tempId) {
+    return _fetch(`/api/pengiriman/${tempId}/coba-lagi`, {
+        method: 'POST',
+    });
+}
+
+async function cancelPengiriman(tempId) {
+    return _fetch(`/api/pengiriman/${tempId}/batalkan`, {
+        method: 'POST',
+    });
 }
 
 // ─── Ports ────────────────────────────────────────────────
@@ -124,9 +232,28 @@ export const api = {
     getDashboardSummary,
     // Nama Linen
     getNamaLinenList,
+    createNamaLinen,
+    updateNamaLinen,
+    deleteNamaLinen,
     // Linen
     getLinenList,
+    createLinen,
+    updateLinen,
+    deleteLinen,
+    // Rumah Sakit
+    getRumahSakitList,
+    createRumahSakit,
+    updateRumahSakit,
+    deleteRumahSakit,
+    // Histori Pengiriman
+    getHistoriPengiriman,
+    getDetailPengiriman,
+    // Antrean Bermasalah
+    getAntreanBermasalah,
+    retryPengiriman,
+    cancelPengiriman,
     // Ports
     getSerialPorts,
     openSerialPort,
 };
+

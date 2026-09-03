@@ -64,11 +64,11 @@
         }
     </style>
 
-    <!-- Alpine.js CDN -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <!-- Shell Entry Point -->
     <script type="module" src="js/shell.js"></script>
+
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-background text-on-surface font-body-md min-h-screen">
     <!-- Fixed Background Image -->
@@ -113,27 +113,38 @@
                     <a data-route class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="/v2/manajemen-nama">Nama Linen</a>
                 </div>
             </div>
+
+            <!-- Dropdown: Admin Cloud -->
+            <div class="relative group" data-dropdown>
+                <a data-dropdown-trigger class="text-on-surface-variant hover:text-primary transition-colors px-4 py-1.5 flex items-center gap-1 hover:bg-glass-border rounded-full cursor-pointer">
+                    Admin Cloud <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+                <div class="absolute top-full left-0 mt-2 w-52 bg-surface/90 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-[100]">
+                    <a data-route class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="/v2/rumah-sakit">Rumah Sakit</a>
+                    <a data-route class="block px-4 py-2 text-label-md hover:bg-primary/10 text-on-surface-variant" href="/v2/histori-pengiriman">Histori Pengiriman</a>
+                </div>
+            </div>
         </div>
 
         <!-- Status Badges (Alpine.js reactive) -->
         <div class="flex items-center gap-4" x-data>
             <!-- Reader Badge -->
             <div class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
-                <span class="w-2 h-2 rounded-full"
-                      :class="$store.connection.isScanningActive
+                <span class="w-2 h-2 rounded-full bg-status-error"
+                      :class="$store.connection?.isScanningActive
                           ? 'bg-status-warning animate-ping'
-                          : ($store.connection.serialConnected ? 'bg-status-success' : 'bg-status-error')"></span>
-                <span class="text-label-sm font-label-sm font-bold text-on-surface"
-                      x-text="$store.connection.isScanningActive
+                          : ($store.connection?.serialConnected ? 'bg-status-success' : 'bg-status-error')"></span>
+                <span class="text-xs font-bold text-on-surface"
+                      x-text="$store.connection?.isScanningActive
                           ? 'Scanning...'
-                          : ($store.connection.serialConnected ? 'Reader ON' : 'Reader OFF')"></span>
+                          : ($store.connection?.serialConnected ? 'Reader ON' : 'Reader OFF')">Reader OFF</span>
             </div>
             <!-- Cloud DB Badge -->
             <div class="flex items-center gap-2 bg-white/50 px-3 py-1 rounded-full border border-white/20">
-                <span class="w-2 h-2 rounded-full"
-                      :class="$store.connection.cloudOnline ? 'bg-status-success' : 'bg-status-error'"></span>
-                <span class="text-label-sm font-label-sm font-bold text-on-surface"
-                      x-text="$store.connection.cloudOnline ? 'Cloud DB ON' : 'Cloud DB OFF'"></span>
+                <span class="w-2 h-2 rounded-full bg-status-error"
+                      :class="$store.connection?.cloudOnline ? 'bg-status-success' : 'bg-status-error'"></span>
+                <span class="text-xs font-bold text-on-surface"
+                      x-text="$store.connection?.cloudOnline ? 'Cloud DB ON' : 'Cloud DB OFF'">Cloud DB OFF</span>
             </div>
         </div>
     </nav>

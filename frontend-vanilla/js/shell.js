@@ -12,15 +12,26 @@
 import { wsConnection } from './ws-connection.js';
 import { router } from './router.js';
 
-// ─── 1. Alpine Store (defined before Alpine.start()) ─────
+// ─── 1. Alpine Store (defined before or after Alpine.start()) ─────
 
-document.addEventListener('alpine:init', () => {
-    Alpine.store('connection', {
-        serialConnected: false,
-        cloudOnline: false,
-        isScanningActive: false,
-    });
-});
+export function registerConnectionStore() {
+    if (window.Alpine && typeof Alpine.store === 'function') {
+        if (!Alpine.store('connection')) {
+            Alpine.store('connection', {
+                serialConnected: false,
+                cloudOnline: false,
+                isScanningActive: false,
+            });
+        }
+    }
+}
+
+if (window.Alpine) {
+    registerConnectionStore();
+} else {
+    document.addEventListener('alpine:init', registerConnectionStore);
+}
+
 
 // ─── 2 & 3. WebSocket + Global Handlers ──────────────────
 
@@ -29,7 +40,8 @@ document.addEventListener('alpine:init', () => {
  * Uses wildcard '*' subscription so it receives ALL event types.
  */
 function handleGlobalWSMessage(data) {
-    const store = Alpine.store('connection');
+    registerConnectionStore();
+    const store = (window.Alpine && typeof Alpine.store === 'function') ? Alpine.store('connection') : null;
     if (!store) return;
 
     switch (data.type) {
