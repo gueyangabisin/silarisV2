@@ -145,6 +145,17 @@ export function showErrorToast(msg) {
  * @param {string} detailMessage
  */
 export function showErrorModal(title, detailMessage) {
+    let messageStr = '';
+    if (typeof detailMessage === 'string') {
+        messageStr = detailMessage;
+    } else if (Array.isArray(detailMessage)) {
+        messageStr = detailMessage.map(err => (typeof err === 'object' && err?.msg) ? err.msg : String(err)).join(', ');
+    } else if (detailMessage && typeof detailMessage === 'object') {
+        messageStr = detailMessage.message || detailMessage.msg || JSON.stringify(detailMessage);
+    } else {
+        messageStr = String(detailMessage || 'Terjadi kesalahan');
+    }
+
     let modal = document.getElementById('global-error-modal');
     if (!modal) {
         modal = document.createElement('div');
@@ -159,7 +170,7 @@ export function showErrorModal(title, detailMessage) {
                 <span class="material-symbols-outlined text-[28px]">error</span>
                 <h3 class="font-headline-md text-headline-md font-bold">${title}</h3>
             </div>
-            <p class="font-body-md text-body-md text-on-surface-variant">${detailMessage}</p>
+            <p class="font-body-md text-body-md text-on-surface-variant">${messageStr}</p>
             <div class="flex justify-end mt-2">
                 <button onclick="document.getElementById('global-error-modal').remove()" class="bg-primary text-on-primary font-label-lg px-6 py-2 rounded-full hover:bg-primary/90 transition-colors">Tutup</button>
             </div>

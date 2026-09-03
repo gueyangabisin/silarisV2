@@ -3,14 +3,19 @@ Pydantic schemas for Pengiriman endpoints.
 Field names match 03_api_data_contract.md §2.3 exactly.
 """
 
-from pydantic import BaseModel
-from typing import List, Optional, Any
+from pydantic import BaseModel, field_validator
+from typing import List, Optional, Any, Union
 from datetime import datetime
 
 
 class PengirimanCreate(BaseModel):
-    rs_id: str
+    rs_id: Union[str, int]
     daftar_epc: List[str]  # List of EPC strings
+
+    @field_validator("rs_id", mode="before")
+    @classmethod
+    def coerce_rs_id_to_str(cls, v):
+        return str(v) if v is not None else ""
 
 
 class PengirimanCreateResponse(BaseModel):

@@ -293,10 +293,14 @@ export function registerRumahSakitComponent() {
                     }
 
                     if (!resp.ok) {
+                        const detailMsg = typeof resp.data?.detail === 'string'
+                            ? resp.data.detail
+                            : (Array.isArray(resp.data?.detail) ? resp.data.detail[0]?.msg : 'Terjadi kesalahan pada server.');
+
                         this.errorModal = {
                             show: true,
                             title: resp.status === 503 ? 'Cloud Supabase Offline' : 'Gagal Menyimpan Rumah Sakit',
-                            message: resp.data?.detail || 'Terjadi kesalahan pada server.',
+                            message: detailMsg,
                         };
                         return;
                     }

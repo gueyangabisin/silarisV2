@@ -114,21 +114,27 @@ class SyncService:
         import json
 
         try:
-            daftar_epc = json.loads(record.daftar_epc)
+            local_rs = db.query(RumahSakitLocal).filter(
+                RumahSakitLocal.rs_id == record.rs_id
+            ).first()
+
+            daftar_epc = json.loads(record.daftar_epc) if record.daftar_epc else []
+
             upload_data = {
                 "kode_verifikasi": record.kode_verifikasi,
                 "rs_id": record.rs_id,
-                "daftar_epc": daftar_epc,
-                "timestamp": record.timestamp.isoformat() if record.timestamp else None,
+                "kode_rs": local_rs.kode_rs if local_rs else "RS-UNKNOWN",
+                "total_linen": len(daftar_epc),
+                "status": "DIKIRIM",
             }
 
             success = await supabase_client.upload_pengiriman(upload_data)
 
             if success:
-                record.status_upload = "sukses"
+                db.delete(record)
                 db.commit()
                 logger.info(
-                    f"Pengiriman {record.kode_verifikasi} uploaded successfully"
+                    f"Pengiriman {record.kode_verifikasi} uploaded successfully to cloud and deleted from local pengiriman_temp"
                 )
                 return True
             else:

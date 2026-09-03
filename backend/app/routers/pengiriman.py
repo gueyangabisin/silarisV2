@@ -105,17 +105,17 @@ async def create_pengiriman(
         item[0].status = "dikirim"
 
     db.commit()
-    db.refresh(pengiriman)
+    temp_id = pengiriman.temp_id
+    kode_verifikasi = pengiriman.kode_verifikasi
 
-    # Try immediate sync to Supabase
+    # Try immediate sync to Supabase (deletes record from pengiriman_temp if upload succeeds)
     uploaded = await sync_service.try_upload_now(db, pengiriman)
-    if uploaded:
-        db.refresh(pengiriman)
+    status_upload = "sukses" if uploaded else pengiriman.status_upload
 
     return {
-        "temp_id": pengiriman.temp_id,
-        "kode_verifikasi": pengiriman.kode_verifikasi,
-        "status_upload": pengiriman.status_upload,
+        "temp_id": temp_id,
+        "kode_verifikasi": kode_verifikasi,
+        "status_upload": status_upload,
     }
 
 
@@ -213,13 +213,18 @@ async def get_histori_pengiriman(
     Paginated shipment history from Supabase.
     Falls back to local PengirimanTemp with status_upload = 'sukses' if offline.
     """
+    start_date_str = start_date if isinstance(start_date, str) and start_date.strip() else None
+    end_date_str = end_date if isinstance(end_date, str) and end_date.strip() else None
+    page_num = page if isinstance(page, int) else 1
+    limit_num = limit if isinstance(limit, int) else 50
+
     # Try Supabase first
     if sync_service.cloud_online:
         result = await supabase_client.get_histori_pengiriman(
-            start_date=start_date,
-            end_date=end_date,
-            page=page,
-            limit=limit,
+            start_date=start_date_str,
+            end_date=end_date_str,
+            page=page_num,
+            limit=limit_num,
         )
         if result is not None:
             # Enrich with nama_rs and jumlah_linen
@@ -227,7 +232,9 @@ async def get_histori_pengiriman(
                 if isinstance(item.get("rumah_sakit"), dict):
                     item["nama_rs"] = item["rumah_sakit"].get("nama_rs")
                     del item["rumah_sakit"]
-                if isinstance(item.get("daftar_epc"), list):
+                if "total_linen" in item and item["total_linen"] is not None:
+                    item["jumlah_linen"] = item["total_linen"]
+                elif isinstance(item.get("daftar_epc"), list):
                     item["jumlah_linen"] = len(item["daftar_epc"])
                 elif isinstance(item.get("daftar_epc"), str):
                     try:
@@ -235,6 +242,11 @@ async def get_histori_pengiriman(
                         item["jumlah_linen"] = len(parsed)
                     except (json.JSONDecodeError, TypeError):
                         item["jumlah_linen"] = 0
+                else:
+                    item["jumlah_linen"] = 0
+
+                if "created_at" in item and not item.get("timestamp"):
+                    item["timestamp"] = item["created_at"]
             return result
 
     # Fallback: local data
@@ -242,9 +254,9 @@ async def get_histori_pengiriman(
         PengirimanTemp.status_upload == "sukses"
     )
     total_data = query.count()
-    total_page = max(1, math.ceil(total_data / limit))
-    offset = (page - 1) * limit
-    records = query.order_by(PengirimanTemp.timestamp.desc()).offset(offset).limit(limit).all()
+    total_page = max(1, math.ceil(total_data / limit_num))
+    offset = (page_num - 1) * limit_num
+    records = query.order_by(PengirimanTemp.timestamp.desc()).offset(offset).limit(limit_num).all()
 
     data = []
     for rec in records:

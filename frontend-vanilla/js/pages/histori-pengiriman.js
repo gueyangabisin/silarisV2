@@ -97,13 +97,13 @@ export const historiPengirimanPage = {
                                       x-text="(item.total_linen || item.items?.length || 0) + ' Linen'"></span>
                             </td>
                             <td class="py-3.5 px-6 font-body-md">
-                                <template x-if="item.status_sync === 'synced' || item.status === 'Selesai'">
+                                <template x-if="item.pengiriman_id || item.status_upload === 'sukses' || item.status === 'DIKIRIM' || item.status_sync === 'synced' || item.status === 'Selesai'">
                                     <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-status-success/10 text-status-success font-bold rounded-full text-label-sm">
                                         <span class="w-2 h-2 rounded-full bg-status-success"></span>
                                         Tersinkronisasi
                                     </span>
                                 </template>
-                                <template x-if="item.status_sync !== 'synced' && item.status !== 'Selesai'">
+                                <template x-if="!item.pengiriman_id && item.status_upload !== 'sukses' && item.status !== 'DIKIRIM' && item.status_sync !== 'synced' && item.status !== 'Selesai'">
                                     <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-status-warning/10 text-status-warning font-bold rounded-full text-label-sm">
                                         <span class="w-2 h-2 rounded-full bg-status-warning"></span>
                                         Pending / Lokal

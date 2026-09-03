@@ -281,14 +281,15 @@ export function registerPengirimanKirimBarangComponent() {
                 this.submitting = true;
                 try {
                     const resp = await api.createPengiriman({
-                        rs_id: parseInt(this.selectedRsId, 10),
+                        rs_id: String(this.selectedRsId),
                         daftar_epc: readyEpcs,
                     });
                     if (!resp.ok) {
-                        showErrorModal('Pengiriman Gagal', resp.data?.detail || 'Terjadi kesalahan saat membuat pengiriman.');
+                        const errDetail = resp.data?.detail;
+                        showErrorModal('Pengiriman Gagal', errDetail || 'Terjadi kesalahan saat membuat pengiriman.');
                         return;
                     }
-                    const rs = this.rumahSakitList.find(r => r.rs_id === parseInt(this.selectedRsId, 10));
+                    const rs = this.rumahSakitList.find(r => String(r.rs_id) === String(this.selectedRsId));
                     this.lastResult = {
                         kode_verifikasi: resp.data.kode_verifikasi,
                         message: `${readyEpcs.length} item berhasil dikirim ke ${rs?.nama_rs || 'Rumah Sakit'}.`,

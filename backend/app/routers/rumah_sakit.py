@@ -78,14 +78,19 @@ async def create_rumah_sakit(
     try:
         result = await supabase_client.create_rumah_sakit(data)
     except httpx.HTTPStatusError as e:
-        if e.response.status_code == 409:
-            raise HTTPException(
-                status_code=409,
-                detail="Kode RS sudah terdaftar.",
-            )
+        error_msg = "Gagal menyimpan data ke cloud."
+        try:
+            body = e.response.json()
+            if isinstance(body, dict) and "message" in body:
+                error_msg = body["message"]
+                if "duplicate key" in error_msg.lower() or "unique constraint" in error_msg.lower():
+                    error_msg = "Kode RS atau Data Unik ini sudah terdaftar di Supabase Cloud."
+        except Exception:
+            pass
+        status_code = e.response.status_code if e.response.status_code in (400, 409, 422) else 502
         raise HTTPException(
-            status_code=502,
-            detail="Gagal menyimpan data ke cloud.",
+            status_code=status_code,
+            detail=error_msg,
         )
 
     # Sync to local cache
@@ -140,10 +145,17 @@ async def update_rumah_sakit(
 
     try:
         await supabase_client.update_rumah_sakit(rs_id, update_data)
-    except httpx.HTTPStatusError:
+    except httpx.HTTPStatusError as e:
+        error_msg = "Gagal memperbarui data di cloud."
+        try:
+            body = e.response.json()
+            if isinstance(body, dict) and "message" in body:
+                error_msg = body["message"]
+        except Exception:
+            pass
         raise HTTPException(
-            status_code=502,
-            detail="Gagal memperbarui data di cloud.",
+            status_code=e.response.status_code if e.response.status_code in (400, 409, 422) else 502,
+            detail=error_msg,
         )
 
     # Sync to local cache
@@ -190,10 +202,17 @@ async def delete_rumah_sakit(rs_id: str, db: Session = Depends(get_db)):
 
     try:
         await supabase_client.delete_rumah_sakit(rs_id)
-    except httpx.HTTPStatusError:
+    except httpx.HTTPStatusError as e:
+        error_msg = "Gagal menghapus data dari cloud."
+        try:
+            body = e.response.json()
+            if isinstance(body, dict) and "message" in body:
+                error_msg = body["message"]
+        except Exception:
+            pass
         raise HTTPException(
-            status_code=502,
-            detail="Gagal menghapus data dari cloud.",
+            status_code=e.response.status_code if e.response.status_code in (400, 409, 422) else 502,
+            detail=error_msg,
         )
 
     # Remove from local cache

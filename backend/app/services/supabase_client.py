@@ -186,20 +186,20 @@ class SupabaseClient:
         try:
             client = await self._get_client()
             params: Dict[str, str] = {
-                "select": "*, rumah_sakit(nama_rs)",
-                "order": "timestamp.desc",
+                "select": "*, rumah_sakit!rs_id(nama_rs)",
+                "order": "created_at.desc",
                 "offset": str((page - 1) * limit),
                 "limit": str(limit),
             }
             if start_date:
-                params["timestamp"] = f"gte.{start_date}"
+                params["created_at"] = f"gte.{start_date}"
             if end_date:
                 # Combine range filter if both dates present
                 if start_date:
-                    params["and"] = f"(timestamp.gte.{start_date},timestamp.lte.{end_date}T23:59:59)"
-                    params.pop("timestamp", None)
+                    params["and"] = f"(created_at.gte.{start_date},created_at.lte.{end_date}T23:59:59)"
+                    params.pop("created_at", None)
                 else:
-                    params["timestamp"] = f"lte.{end_date}T23:59:59"
+                    params["created_at"] = f"lte.{end_date}T23:59:59"
 
             # Get total count first
             count_headers = {**self._headers, "Prefer": "count=exact"}
@@ -237,8 +237,8 @@ class SupabaseClient:
             resp = await client.get(
                 "/pengiriman",
                 params={
-                    "select": "*, rumah_sakit(nama_rs)",
-                    "id": f"eq.{pengiriman_id}",
+                    "select": "*, rumah_sakit!rs_id(nama_rs)",
+                    "or": f"(pengiriman_id.eq.{pengiriman_id},kode_verifikasi.eq.{pengiriman_id})",
                 },
             )
             resp.raise_for_status()
